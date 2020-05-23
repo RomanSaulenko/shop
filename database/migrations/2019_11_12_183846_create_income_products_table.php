@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNomenclaturesTable extends Migration
+class CreateIncomeProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateNomenclaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('nomenclatures', function (Blueprint $table) {
+        Schema::create('income_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title', 100);
-            $table->unsignedBigInteger('category_id');
             $table->double('price_retail');
             $table->double('price_procurement');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ class CreateNomenclaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nomenclatures');
+        Schema::dropIfExists('income_products');
     }
 }

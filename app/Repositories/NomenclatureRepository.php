@@ -4,7 +4,9 @@
 namespace App\Repositories;
 
 
-class NomenclatureRepository
+interface NomenclatureRepository
 {
+    public function getByCategory(int $categoryId);
 
+    public function getProduct(int $id);
 }

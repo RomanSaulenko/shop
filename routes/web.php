@@ -20,19 +20,16 @@ $router = app(Router::class);
 
 $router->group(['prefix' => '/'], function(Router $router) {
 
-    $router->get('/', 'IndexPageController@index');
+    $router->get('/', 'IndexPageController@index')->name('index');
 
     $router->group(['prefix' => 'product'], function(Router $router) {
         $router->get('cart/{id}', 'NomenclatureController@cart');
     });
 
     $router->group(['prefix' => 'categories'], function(Router $router) {
-        $router->get('/{id}', 'CategoryController@leaf');
+        $router->get('/{categoryId}', 'NomenclatureController@getProductsForCategory')->name('category.products');
     });
 
-    $router->group(['prefix' => 'categories'], function(Router $router) {
-        $router->get('{id}', 'CategoryController@getProductsForParentCategory');
-    });
 });
 
 

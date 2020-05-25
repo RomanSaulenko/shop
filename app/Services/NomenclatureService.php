@@ -2,20 +2,25 @@
 
 namespace App\Services;
 
-use App\Models\Nomenclature;
+use App\Repositories\NomenclatureRepository;
 
 class NomenclatureService
 {
-    /**@var Nomenclature */
-    protected $nomenclature;
+    /**@var NomenclatureRepository */
+    protected $nomenclatureRepository;
 
-    public function __construct(Nomenclature $nomenclature)
+    public function __construct(NomenclatureRepository $nomenclatureRepository)
     {
-        $this->nomenclature = $nomenclature;
+        $this->nomenclatureRepository = $nomenclatureRepository;
     }
 
-    public function get($id)
+    public function getProduct($id)
     {
-        return $this->nomenclature->find($id);
+        return $this->nomenclatureRepository->getProduct($id);
+    }
+
+    public function getProductsForCategory(int $categoryId)
+    {
+        return $this->nomenclatureRepository->getByCategory($categoryId);
     }
 }

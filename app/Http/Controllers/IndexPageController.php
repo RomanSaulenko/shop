@@ -3,15 +3,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\MysqlCategoryRepository;
 
 
 class IndexPageController extends Controller
 {
-    /**@var CategoryRepository */
+    /**@var MysqlCategoryRepository */
     protected $categoryRepository;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(MysqlCategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

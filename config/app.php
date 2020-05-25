@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \App\Providers\NomenclatureServiceProvider::class,
 
         /*
          * Application Service Providers...

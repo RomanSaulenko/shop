@@ -14,26 +14,28 @@ class NomenclatureController extends Controller
      * @var NomenclatureService
      */
     protected $nomenclatureService;
-    /**
-     * @var NomenclatureRepository
-     */
-    protected $nomenclatureRepository;
 
-    public function __construct(NomenclatureService $nomenclatureService, NomenclatureRepository $nomenclatureRepository)
+    public function __construct(NomenclatureService $nomenclatureService)
     {
         $this->nomenclatureService = $nomenclatureService;
-        $this->nomenclatureRepository = $nomenclatureRepository;
     }
 
-    public function cart($id)
+    public function getProductContent(string $id)
     {
-        $nomenclature = $this->nomenclatureService->get($id);
+        $nomenclature = $this->nomenclatureService->getProduct($id);
 
-        return view();
+        return view('nomenclature.cart');
     }
 
-    public function list(Request $request)
+    public function getProductsForCategory(Request $request, int $categoryId)
     {
+        $products = $this->nomenclatureService
+            ->getProductsForCategory($categoryId)
+            ->paginate(1)
+        ;
 
+        return view('client.category.list-products', compact('products'));
     }
+
+
 }

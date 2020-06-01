@@ -8,21 +8,6 @@
     </section>
 @endsection
 
-@section('sidebar')
-    <div class="col-2 ml-2 border-right">
-        <form>
-            <div class="row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="From">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="To">
-                </div>
-            </div>
-        </form>
-    </div>
-@endsection
-
 @section('content')
 
     <div class="col-6">

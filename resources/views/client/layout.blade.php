@@ -50,7 +50,6 @@
             @yield('sidebar')
 
             @yield('content')
-
         </div>
 
 

@@ -28,6 +28,7 @@ $router->group(['prefix' => '/'], function(Router $router) {
 
     $router->group(['prefix' => 'categories'], function(Router $router) {
         $router->get('/{categoryId}', 'NomenclatureController@getProductsForCategory')->name('category.products');
+        $router->get('/products/{productId}', 'NomenclatureController@getProductById')->name('category.product');
     });
 
 });

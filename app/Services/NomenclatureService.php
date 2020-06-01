@@ -19,8 +19,8 @@ class NomenclatureService
         return $this->nomenclatureRepository->getProduct($id);
     }
 
-    public function getProductsForCategory(int $categoryId)
+    public function getProductsForCategory(int $categoryId, $filters = [])
     {
-        return $this->nomenclatureRepository->getByCategory($categoryId);
+        return $this->nomenclatureRepository->getByCategory($categoryId, $filters);
     }
 }

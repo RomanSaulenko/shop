@@ -2,49 +2,30 @@
 
 @section('content')
 
-<main role="main">
-
     <div class="container mt-3">
         <div class="row">
-            <div class="col">
-                {{ $products }}
+            <div class="col-6 border">
+                <div>
+                    @if($product->image)
+                        <img src="{{asset('images/' . $product->image) }}" class="image-centered">
+                    @else
+                        <img src="{{asset('images/default.jpg')}}"
+                             class="image-centered"
+                        >
+                    @endif
+                </div>
             </div>
-        </div>
+            <div class="col-3 ml-4">
+                <div>{{ $product->title }}</div>
+                <div>{{ $product->price }}</div>
 
-        <div class="row ml-1">
-            <div class="col">
-                <div class="row">
+                <div class="mt-3">
 
-                    @foreach($products as $product)
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="/categories/{{ $product->id }}">
-                                    @if($product->image)
-                                    <img src="{{asset('images/' . $product->image) }}" class="img-fluid">
-                                    @else
-                                    <img src="{{asset('images/default.jpg')}}" class="img-fluid">
-                                    @endif
-                                </a>
-                                <div class="text-center">
-                                    <a href="{{route('category.products', ['categoryId' => $product->id])}}">{{$product->title}}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                    <button class="btn btn-danger">Buy</button>
                 </div>
             </div>
         </div>
-
-        <div class="row mt-3">
-            <div class="col">
-                {{ $products }}
-            </div>
-        </div>
     </div>
-
-</main>
 
 @endsection
 

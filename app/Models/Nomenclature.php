@@ -13,4 +13,9 @@ class Nomenclature extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getPriceAttribute()
+    {
+        return $this->price_retail;
+    }
 }

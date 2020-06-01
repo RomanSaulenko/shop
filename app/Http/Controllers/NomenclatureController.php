@@ -4,9 +4,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\Nomenclature\GetProductsForCategory;
 use App\Repositories\NomenclatureRepository;
 use App\Services\NomenclatureService;
-use Illuminate\Http\Request;
 
 class NomenclatureController extends Controller
 {
@@ -15,9 +15,15 @@ class NomenclatureController extends Controller
      */
     protected $nomenclatureService;
 
-    public function __construct(NomenclatureService $nomenclatureService)
+    /**
+     * @var NomenclatureRepository
+     */
+    protected $repository;
+
+    public function __construct(NomenclatureService $nomenclatureService, NomenclatureRepository $repository)
     {
         $this->nomenclatureService = $nomenclatureService;
+        $this->repository = $repository;
     }
 
     public function getProductContent(string $id)
@@ -27,14 +33,22 @@ class NomenclatureController extends Controller
         return view('nomenclature.cart');
     }
 
-    public function getProductsForCategory(Request $request, int $categoryId)
+    public function getProductsForCategory(GetProductsForCategory $request, int $categoryId)
     {
         $products = $this->nomenclatureService
-            ->getProductsForCategory($categoryId)
-            ->paginate(1)
+            ->getProductsForCategory($categoryId, $request->validated()['filter'] ?? [])
+            ->paginate(8)
         ;
+        $requestData = $request->validated();
 
-        return view('client.category.list-products', compact('products'));
+        return view('client.category.list-products', compact('products', 'requestData'));
+    }
+
+    public function getProductById(string $productId)
+    {
+        $product = $this->repository->getProduct($productId);
+
+        return view('client.nomenclature.cart', compact('product'));
     }
 
 

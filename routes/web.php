@@ -33,4 +33,14 @@ $router->group(['prefix' => '/'], function(Router $router) {
 
 });
 
+$router->group(['prefix' => '/client', ], function(Router $router) {
+    $router->get('login', 'Client\Auth\LoginController@showLoginForm');
+    $router->get('register', 'Client\Auth\RegisterController@showRegistrationForm');
 
+});
+
+
+
+\Illuminate\Support\Facades\Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

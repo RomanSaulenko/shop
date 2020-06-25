@@ -33,14 +33,18 @@ $router->group(['prefix' => '/'], function(Router $router) {
 
 });
 
-$router->group(['prefix' => '/client', ], function(Router $router) {
-    $router->get('login', 'Client\Auth\LoginController@showLoginForm');
-    $router->get('register', 'Client\Auth\RegisterController@showRegistrationForm');
+$router->group(['prefix' => 'client', ], function(Router $router) {
+    $router->get('login', 'Client\Auth\LoginController@showLoginForm')->name('client.login');
+    $router->get('register', 'Client\Auth\RegisterController@showRegistrationForm')->name('client.register');
+    $router->get('password/reset', 'Client\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    $router->get('password/reset/{token}', 'Client\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+
+    $router->post('login', 'Client\Auth\LoginController@login');
+    $router->post('logout', 'Client\Auth\LoginController@logout')->name('logout');
+
+    $router->post('register', 'Client\Auth\RegisterController@register');
+
+    $router->post('password/email', 'Client\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    $router->post('password/reset', 'Client\Auth\ResetPasswordController@reset')->name('password.update');
 
 });
-
-
-
-\Illuminate\Support\Facades\Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -35,6 +35,8 @@ class MysqlNomenclatureRepository implements NomenclatureRepository
         if (array_key_exists('price_to', $filters) && $filters['price_to']) {
             $query->where('price_retail', '<=', $filters['price_to']);
         }
+        $query->with(['category', 'brand']);
+
         return $query;
     }
 

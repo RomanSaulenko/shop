@@ -13,6 +13,11 @@ class Nomenclature extends Model implements Buyable
 
     protected $fillable = ['title', 'category_id', 'price_retail', 'price_procurement'];
 
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

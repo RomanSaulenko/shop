@@ -37,9 +37,48 @@
                     <a href="{{route('index')}}" class="navbar-brand d-flex align-items-center">
                         <strong>{{ config('app.name') }}</strong>
                     </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info btn-secondary border-right" >
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">3</span>
+                        </button>
+                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="row total-header-section border-bottom">
+                                <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
+                                    <p>Total: <span class="text-info">$2,978.24</span></p>
+                                </div>
+                            </div>
+                            <div class="row cart-detail">
+                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                    <img src="https://images-na.ssl-images-amazon.com/images/I/811OyrCd5hL._SX425_.jpg" class="img-fluid">
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                    <p>Sony DSC-RX100M..</p>
+                                    <span class="price text-info"> $250.22</span> <span class="count"> Quantity:01</span>
+                                </div>
+                            </div>
+                            <div class="row cart-detail">
+                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
+                                    <img src="https://images-na.ssl-images-amazon.com/images/I/811OyrCd5hL._SX425_.jpg" class="img-fluid">
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
+                                    <p>Sony DSC-RX100M..</p>
+                                    <span class="price text-info"> $250.22</span> <span class="count"> Quantity:01</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
+                                    <button class="btn btn-primary btn-block">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </header>

@@ -3,10 +3,14 @@
 namespace App\Models;
 
 
+use App\Modules\ShoppingBucket\CanBeBought;
+use App\Modules\ShoppingBucket\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
-class Nomenclature extends Model
+class Nomenclature extends Model implements Buyable
 {
+    use CanBeBought;
+
     protected $fillable = ['title', 'category_id', 'price_retail', 'price_procurement'];
 
     public function category()
@@ -18,4 +22,6 @@ class Nomenclature extends Model
     {
         return $this->price_retail;
     }
+
+
 }

@@ -18,6 +18,7 @@ class IndexPageController extends Controller
 
     public function index()
     {
+        session()->put('key', 'va');
         $categories = $this->categoryRepository->getCategoriesByParentId(0);
 
         return view('client.index', compact('categories'));

@@ -1,4 +1,4 @@
-@extends('client.layout')
+@extends('client.layouts.base')
 
 @section('sidebar')
     <div class="col-2 ml-2 border-right mt-3">

@@ -39,14 +39,14 @@
                     </a>
 
 
-                    <div class="btn-group">
+                    <div class="btn-group shopping-bucket">
                         <button type="button" class="btn btn-info btn-secondary border-right" >
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">3</span>
                         </button>
                         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu dropdown-menu-right">
                             <div class="row total-header-section border-bottom">
                                 <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                                     <p>Total: <span class="text-info">$2,978.24</span></p>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                     <p>Sony DSC-RX100M..</p>
-                                    <span class="price text-info"> $250.22</span> <span class="count"> Quantity:01</span>
+                                    <span class="price text-info"> $250.22</span> <span class="count"> Quantity: 1</span>
                                 </div>
                             </div>
                             <div class="row cart-detail">
@@ -67,10 +67,10 @@
                                 </div>
                                 <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                     <p>Sony DSC-RX100M..</p>
-                                    <span class="price text-info"> $250.22</span> <span class="count"> Quantity:01</span>
+                                    <span class="price text-info"> $250.22</span> <span class="count"> Quantity: 1</span>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row p-3">
                                 <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
                                     <button class="btn btn-primary btn-block">Checkout</button>
                                 </div>
@@ -85,7 +85,7 @@
 
         @yield('header')
 
-        <div class="row">
+        <div class="container">
             @yield('sidebar')
 
             @yield('content')
@@ -98,7 +98,7 @@
                     <a href="#">Back to top</a>
                 </p>
                 <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-                <p>New to Bootstrap? <a href="../../..">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+                <p>New to Bootstrap? <a href="../../../..">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
             </div>
         </footer>
 

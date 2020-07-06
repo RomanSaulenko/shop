@@ -28,7 +28,7 @@ $router->group(['prefix' => '/'], function(Router $router) {
     });
 
     $router->group(['prefix' => '/basket'], function(Router $router) {
-        $router->get('/', 'BasketController@list');
+        $router->get('/', 'BasketController@basketCheckout')->name('basket.checkout');
         $router->get('add', 'BasketController@addItemToCart');
     });
 

@@ -40,19 +40,20 @@
 
 
                     <div class="btn-group shopping-bucket">
-                        <button type="button" class="btn btn-info btn-secondary border-right" >
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">3</span>
-                        </button>
+                        <a type="button" class="btn btn-info btn-secondary border-right" href="{{route('basket.checkout')}}" >
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{__('common.Basket')}} <span class="badge badge-pill badge-danger">{{$basketCount}}</span>
+                        </a>
                         <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-menu dropdown-menu-right basket-dropdown">
                             <div class="row total-header-section border-bottom">
                                 <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
                                     <p>Total: <span class="text-info">$2,978.24</span></p>
                                 </div>
                             </div>
                             <div class="row cart-detail">
+
                                 <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
                                     <img src="https://images-na.ssl-images-amazon.com/images/I/811OyrCd5hL._SX425_.jpg" class="img-fluid">
                                 </div>
@@ -72,7 +73,7 @@
                             </div>
                             <div class="row p-3">
                                 <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                    <button class="btn btn-primary btn-block">Checkout</button>
+                                    <button class="btn btn-primary btn-block">{{ __('common.To_basket') }}</button>
                                 </div>
                             </div>
                         </div>

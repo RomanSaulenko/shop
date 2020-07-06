@@ -19,7 +19,7 @@ class BasketController extends Controller
         Cart::add($model);
     }
 
-    public function list()
+    public function basketCheckout()
     {
         $basketProducts = Cart::content();
 

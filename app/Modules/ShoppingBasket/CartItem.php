@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Modules\ShoppingBucket;
+namespace App\Modules\ShoppingBasket;
 
 use Illuminate\Contracts\Support\Arrayable;
-use App\Modules\ShoppingBucket\Contracts\Buyable;
+use App\Modules\ShoppingBasket\Contracts\Buyable;
 use Illuminate\Contracts\Support\Jsonable;
 
 class CartItem implements Arrayable, Jsonable
@@ -127,7 +127,7 @@ class CartItem implements Arrayable, Jsonable
     /**
      * Update the cart item from a Buyable.
      *
-     * @param \App\Modules\ShoppingBucket\Contracts\Buyable $item
+     * @param \App\Modules\ShoppingBasket\Contracts\Buyable $item
      * @return void
      */
     public function updateFromBuyable(Buyable $item)
@@ -135,7 +135,6 @@ class CartItem implements Arrayable, Jsonable
         $this->id       = $item->getBuyableIdentifier($this->options);
         $this->name     = $item->getBuyableDescription($this->options);
         $this->price    = $item->getBuyablePrice($this->options);
-        $this->priceTax = $this->price + $this->tax;
     }
 
     /**
@@ -150,7 +149,6 @@ class CartItem implements Arrayable, Jsonable
         $this->qty      = array_get($attributes, 'qty', $this->qty);
         $this->name     = array_get($attributes, 'name', $this->name);
         $this->price    = array_get($attributes, 'price', $this->price);
-        $this->priceTax = $this->price + $this->tax;
         $this->options  = new CartItemOptions(array_get($attributes, 'options', $this->options));
 
         $this->rowId = $this->generateRowId($this->id, $this->options->all());
@@ -160,7 +158,7 @@ class CartItem implements Arrayable, Jsonable
      * Associate the cart item with the given model.
      *
      * @param mixed $model
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     public function associate($model)
     {
@@ -195,9 +193,9 @@ class CartItem implements Arrayable, Jsonable
     /**
      * Create a new instance from a Buyable.
      *
-     * @param \App\Modules\ShoppingBucket\Contracts\Buyable $item
+     * @param \App\Modules\ShoppingBasket\Contracts\Buyable $item
      * @param array                                      $options
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     public static function fromBuyable(Buyable $item, array $options = [])
     {
@@ -211,7 +209,7 @@ class CartItem implements Arrayable, Jsonable
      * @param string     $name
      * @param float      $price
      * @param array      $options
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     public static function fromAttributes($id, $name, $price, array $options = [])
     {
@@ -272,15 +270,15 @@ class CartItem implements Arrayable, Jsonable
     private function numberFormat($value, $decimals, $decimalPoint, $thousandSeperator)
     {
         if (is_null($decimals)){
-            $decimals = is_null(config('shopping_bucket.format.decimals')) ? 2 : config('shopping_bucket.format.decimals');
+            $decimals = is_null(config('shopping_basket.format.decimals')) ? 2 : config('shopping_basket.format.decimals');
         }
 
         if (is_null($decimalPoint)){
-            $decimalPoint = is_null(config('shopping_bucket.format.decimal_point')) ? '.' : config('shopping_bucket.format.decimal_point');
+            $decimalPoint = is_null(config('shopping_basket.format.decimal_point')) ? '.' : config('shopping_basket.format.decimal_point');
         }
 
         if (is_null($thousandSeperator)){
-            $thousandSeperator = is_null(config('shopping_bucket.format.thousand_seperator')) ? ',' : config('shopping_bucket.format.thousand_seperator');
+            $thousandSeperator = is_null(config('shopping_basket.format.thousand_seperator')) ? ',' : config('shopping_basket.format.thousand_seperator');
         }
 
         return number_format($value, $decimals, $decimalPoint, $thousandSeperator);

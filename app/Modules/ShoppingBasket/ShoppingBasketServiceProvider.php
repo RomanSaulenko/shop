@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\ShoppingBucket;
+namespace App\Modules\ShoppingBasket;
 
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Session\SessionManager;
 use Illuminate\Support\ServiceProvider;
 
-class ShoppingBucketServiceProvider extends ServiceProvider
+class ShoppingBasketServiceProvider extends ServiceProvider
 {
 
     /**
@@ -16,11 +16,11 @@ class ShoppingBucketServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('shopping_bucket', Cart::class);
+        $this->app->bind('shopping_basket', Cart::class);
 
         $this->app['events']->listen(Logout::class, function () {
-            if ($this->app['config']->get('shopping_bucket.destroy_on_logout')) {
-                $this->app->make(SessionManager::class)->forget('shopping_bucket');
+            if ($this->app['config']->get('shopping_basket.destroy_on_logout')) {
+                $this->app->make(SessionManager::class)->forget('shopping_basket');
             }
         });
     }

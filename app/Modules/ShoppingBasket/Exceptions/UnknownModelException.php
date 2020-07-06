@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\ShoppingBucket\Exceptions;
+namespace App\Modules\ShoppingBasket\Exceptions;
 
 use RuntimeException;
 

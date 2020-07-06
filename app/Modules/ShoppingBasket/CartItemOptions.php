@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\ShoppingBucket;
+namespace App\Modules\ShoppingBasket;
 
 use Illuminate\Support\Collection;
 

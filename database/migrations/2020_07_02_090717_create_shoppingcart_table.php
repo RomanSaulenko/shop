@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShoppingBucketTable extends Migration
+class CreateShoppingBasketTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateShoppingBucketTable extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_bucket', function (Blueprint $table) {
+        Schema::create('shopping_basket', function (Blueprint $table) {
             $table->string('id');
             $table->string('instance');
             $table->longText('content');
@@ -30,6 +30,6 @@ class CreateShoppingBucketTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shopping_bucket');
+        Schema::dropIfExists('shopping_basket');
     }
 }

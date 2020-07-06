@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\ShoppingBucket\Contracts;
+namespace App\Modules\ShoppingBasket\Contracts;
 
 interface Buyable
 {

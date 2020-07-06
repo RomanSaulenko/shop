@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'ru'),
 
     /*
     |--------------------------------------------------------------------------
@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        App\Modules\ShoppingBucket\ShoppingBucketServiceProvider::class,
+        App\Modules\ShoppingBasket\ShoppingBasketServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -225,6 +225,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // App aliases
+        'nomenclature' => \App\Models\Nomenclature::class
 
     ],
 

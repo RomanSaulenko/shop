@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\ShoppingBucket;
+namespace App\Modules\ShoppingBasket;
 
 use Closure;
-use App\Modules\ShoppingBucket\Contracts\Buyable;
-use App\Modules\ShoppingBucket\Exceptions\UnknownModelException;
-use App\Modules\ShoppingBucket\Exceptions\InvalidRowIDException;
-use App\Modules\ShoppingBucket\Exceptions\CartAlreadyStoredException;
+use App\Modules\ShoppingBasket\Contracts\Buyable;
+use App\Modules\ShoppingBasket\Exceptions\UnknownModelException;
+use App\Modules\ShoppingBasket\Exceptions\InvalidRowIDException;
+use App\Modules\ShoppingBasket\Exceptions\CartAlreadyStoredException;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
 use Illuminate\Database\DatabaseManager;
@@ -14,7 +14,7 @@ use Illuminate\Contracts\Events\Dispatcher;
 
 class Cart
 {
-    const DEFAULT_INSTANCE = 'default';
+    const DEFAULT_INSTANCE = 'shopping_basket';
 
     /**
      * Instance of the session manager.
@@ -55,7 +55,7 @@ class Cart
      * Set the current cart instance.
      *
      * @param string|null $instance
-     * @return \App\Modules\ShoppingBucket\Cart
+     * @return \App\Modules\ShoppingBasket\Cart
      */
     public function instance($instance = null)
     {
@@ -84,7 +84,7 @@ class Cart
      * @param int|float $qty
      * @param float     $price
      * @param array     $options
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     public function add($id, $name = null, $qty = null, $price = null, array $options = [])
     {
@@ -104,7 +104,7 @@ class Cart
 
         $content->put($cartItem->rowId, $cartItem);
 
-        $this->events->fire('shopping_bucket.added', $cartItem);
+        $this->events->fire('shopping_basket.added', $cartItem);
 
         $this->session->put($this->instance, $content);
 
@@ -116,7 +116,7 @@ class Cart
      *
      * @param string $rowId
      * @param mixed  $qty
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     public function update($rowId, $qty)
     {
@@ -148,7 +148,7 @@ class Cart
             $content->put($cartItem->rowId, $cartItem);
         }
 
-        $this->events->fire('shopping_bucket.updated', $cartItem);
+        $this->events->fire('shopping_basket.updated', $cartItem);
 
         $this->session->put($this->instance, $content);
 
@@ -169,7 +169,7 @@ class Cart
 
         $content->pull($cartItem->rowId);
 
-        $this->events->fire('shopping_bucket.removed', $cartItem);
+        $this->events->fire('shopping_basket.removed', $cartItem);
 
         $this->session->put($this->instance, $content);
     }
@@ -178,7 +178,7 @@ class Cart
      * Get a cart item from the cart by its rowId.
      *
      * @param string $rowId
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     public function get($rowId)
     {
@@ -302,7 +302,7 @@ class Cart
             'content' => serialize($content)
         ]);
 
-        $this->events->fire('shopping_bucket.stored');
+        $this->events->fire('shopping_basket.stored');
     }
 
     /**
@@ -332,7 +332,7 @@ class Cart
             $content->put($cartItem->rowId, $cartItem);
         }
 
-        $this->events->fire('shopping_bucket.restored');
+        $this->events->fire('shopping_basket.restored');
 
         $this->session->put($this->instance, $content);
 
@@ -379,7 +379,7 @@ class Cart
      * @param int|float $qty
      * @param float     $price
      * @param array     $options
-     * @return \App\Modules\ShoppingBucket\CartItem
+     * @return \App\Modules\ShoppingBasket\CartItem
      */
     private function createCartItem($id, $name, $qty, $price, array $options)
     {
@@ -436,7 +436,7 @@ class Cart
      */
     private function getTableName()
     {
-        return config('shopping_bucket.database.table', 'shopping_bucket');
+        return config('shopping_basket.database.table', 'shopping_basket');
     }
 
     /**
@@ -446,7 +446,7 @@ class Cart
      */
     private function getConnectionName()
     {
-        $connection = config('shopping_bucket.database.connection');
+        $connection = config('shopping_basket.database.connection');
 
         return is_null($connection) ? config('database.default') : $connection;
     }

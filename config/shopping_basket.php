@@ -5,7 +5,7 @@ return [
 
         'connection' => null,
 
-        'table' => 'shopping_bucket',
+        'table' => 'shopping_basket',
 
     ],
 

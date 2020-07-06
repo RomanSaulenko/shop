@@ -20,7 +20,7 @@
 
                 <div class="mt-3">
 
-                    <button class="btn btn-danger">Buy</button>
+                    <button class="btn btn-danger" onclick="Cart.add({{ $product->id }}, {model:'nomenclature'});">{{__('nomenclature.Add_to_cart')}}</button>
                 </div>
             </div>
         </div>

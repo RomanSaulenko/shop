@@ -22,13 +22,14 @@ $router->group(['prefix' => '/'], function(Router $router) {
 
     $router->get('/', 'IndexPageController@index')->name('index');
 
-    $router->group(['prefix' => 'product'], function(Router $router) {
-        $router->get('cart/{id}', 'NomenclatureController@cart');
-    });
-
     $router->group(['prefix' => 'categories'], function(Router $router) {
         $router->get('/{categoryId}', 'NomenclatureController@getProductsForCategory')->name('category.products');
         $router->get('/products/{productId}', 'NomenclatureController@getProductById')->name('category.product');
+    });
+
+    $router->group(['prefix' => '/basket'], function(Router $router) {
+        $router->get('/', 'BasketController@list');
+        $router->get('add', 'BasketController@addItemToCart');
     });
 
 });

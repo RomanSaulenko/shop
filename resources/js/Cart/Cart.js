@@ -1,7 +1,11 @@
 CartClass = function() {
     this.add = function(productId, options = {}) {
-        axios.post('/cart/add', {
-            productId: productId
+        options = JSON.stringify(options)
+        axios.get('/basket/add', {
+            params: {
+                productId: productId,
+                options: options
+            }
         });
     };
 }

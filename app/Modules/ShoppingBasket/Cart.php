@@ -2,6 +2,11 @@
 
 namespace App\Modules\ShoppingBasket;
 
+use App\Modules\ShoppingBasket\Events\CartItemIsAdded;
+use App\Modules\ShoppingBasket\Events\CartItemIsRemoved;
+use App\Modules\ShoppingBasket\Events\CartItemIsUpdated;
+use App\Modules\ShoppingBasket\Events\ShoppingBasketIsRestored;
+use App\Modules\ShoppingBasket\Events\ShoppingBasketIsStored;
 use Closure;
 use App\Modules\ShoppingBasket\Contracts\Buyable;
 use App\Modules\ShoppingBasket\Exceptions\UnknownModelException;
@@ -104,7 +109,7 @@ class Cart
 
         $content->put($cartItem->rowId, $cartItem);
 
-        $this->events->fire('shopping_basket.added', $cartItem);
+        $this->events->dispatch(new CartItemIsAdded($cartItem));
 
         $this->session->put($this->instance, $content);
 
@@ -148,7 +153,7 @@ class Cart
             $content->put($cartItem->rowId, $cartItem);
         }
 
-        $this->events->fire('shopping_basket.updated', $cartItem);
+        $this->events->dispatch(new CartItemIsUpdated($cartItem));
 
         $this->session->put($this->instance, $content);
 
@@ -169,7 +174,7 @@ class Cart
 
         $content->pull($cartItem->rowId);
 
-        $this->events->fire('shopping_basket.removed', $cartItem);
+        $this->events->dispatch(new CartItemIsRemoved($cartItem));
 
         $this->session->put($this->instance, $content);
     }
@@ -302,7 +307,7 @@ class Cart
             'content' => serialize($content)
         ]);
 
-        $this->events->fire('shopping_basket.stored');
+        $this->events->dispatch(new ShoppingBasketIsStored());
     }
 
     /**
@@ -332,7 +337,7 @@ class Cart
             $content->put($cartItem->rowId, $cartItem);
         }
 
-        $this->events->fire('shopping_basket.restored');
+        $this->events->dispatch(new ShoppingBasketIsRestored());
 
         $this->session->put($this->instance, $content);
 

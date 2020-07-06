@@ -3,8 +3,8 @@
 namespace App\Models;
 
 
-use App\Modules\ShoppingBucket\CanBeBought;
-use App\Modules\ShoppingBucket\Contracts\Buyable;
+use App\Modules\ShoppingBasket\CanBeBought;
+use App\Modules\ShoppingBasket\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 class Nomenclature extends Model implements Buyable

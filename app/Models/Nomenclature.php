@@ -11,7 +11,7 @@ class Nomenclature extends Model implements Buyable
 {
     use CanBeBought;
 
-    protected $fillable = ['title', 'category_id', 'price_retail', 'price_procurement'];
+    protected $fillable = ['title', 'category_id', 'price_retail', 'price_procurement', 'description'];
 
     public function brand()
     {

@@ -25,8 +25,10 @@ class BasketController extends Controller
     public function basketCheckout()
     {
         $basketProducts = Cart::content();
+        $total = Cart::total();
+        $count = Cart::count();
 
-        return view('client.basket.index', compact('basketProducts'));
+        return view('client.basket.index', compact('basketProducts', 'total', 'count'));
     }
 
     /**

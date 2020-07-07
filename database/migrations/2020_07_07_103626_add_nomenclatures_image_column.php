@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNomenclatureDescriptionColumn extends Migration
+class AddNomenclaturesImageColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddNomenclatureDescriptionColumn extends Migration
     public function up()
     {
         Schema::table('nomenclatures', function (Blueprint $table) {
-            $table->text('description')
-                ->after('price_procurement')
+            $table->string('image')
+                ->after('description')
             ;
         });
     }
@@ -28,7 +28,7 @@ class AddNomenclatureDescriptionColumn extends Migration
     public function down()
     {
         Schema::table('nomenclatures', function (Blueprint $table) {
-            $table->dropColumn('description');
+            $table->dropColumn('image');
         });
     }
 }

@@ -17,7 +17,7 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Contracts\Events\Dispatcher;
 
-class Cart
+class Basket
 {
     const DEFAULT_INSTANCE = 'shopping_basket';
 
@@ -60,7 +60,7 @@ class Cart
      * Set the current cart instance.
      *
      * @param string|null $instance
-     * @return \App\Modules\ShoppingBasket\Cart
+     * @return \App\Modules\ShoppingBasket\Basket
      */
     public function instance($instance = null)
     {
@@ -244,7 +244,7 @@ class Cart
         $content = $this->getContent();
 
         $total = $content->reduce(function ($total, CartItem $cartItem) {
-            return $total + $cartItem->price;
+            return $total + $cartItem->price * $cartItem->qty;
         }, 0);
 
         return $this->numberFormat($total, $decimals, $decimalPoint, $thousandSeperator);

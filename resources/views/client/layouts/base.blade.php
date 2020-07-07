@@ -40,10 +40,10 @@
 
 
                     <div class="btn-group shopping-basket">
-                        <a type="button" class="btn btn-info btn-secondary border-right" href="{{route('basket.checkout')}}" >
+                        <a type="button" class="btn btn-secondary border-right" href="{{route('basket.checkout')}}" >
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{__('common.Basket')}} <span class="badge badge-pill badge-danger">{{$basketCount}}</span>
                         </a>
-                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" onclick="Cart.dropdown();"
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" onclick="Cart.dropdown();"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -66,15 +66,94 @@
         </div>
 
 
-        <footer class="text-muted mt-3">
-            <p class="float-right">
-                <a href="#">Back to top</a>
-            </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap? <a href="../../../..">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+        <footer class="page-footer">
+                <div class="container-fluid bg-light d-flex justify-content-between  mh-100">
+                    <!-- Footer Links -->
+                    <div class="container text-center text-md-left  p-3">
+
+                        <!-- Grid row -->
+                        <div class="row">
+
+                            <!-- Grid column -->
+                            <div class="col-md-6 mt-md-0 mt-3">
+
+                                <!-- Content -->
+                                <h5 class="text-uppercase">Footer Content</h5>
+
+                            </div>
+                            <!-- Grid column -->
+
+
+                            <!-- Grid column -->
+                            <div class="col-md-3 mb-md-0 mb-3">
+
+                                <!-- Links -->
+                                <h5 class="text-uppercase">Сервис и помощь</h5>
+
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#!">Link 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 5</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 6</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 7</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 8</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-3 mb-md-0 mb-3">
+
+                                <!-- Links -->
+                                <h5 class="text-uppercase">Информация</h5>
+
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#!">Link 1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#!">Link 4</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                    </div>
+
+
+
+                </div>
         </footer>
 
-{{--        <script src="{{mix('js/vendor.js')}}"></script>--}}
         <script src="{{mix('js/app.js')}}"></script>
         <script src="{{mix('js/cart/Cart.js')}}"></script>
     </body>

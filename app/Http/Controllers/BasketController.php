@@ -4,19 +4,19 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\Cart\Add;
-use App\Modules\ShoppingBasket\Facades\Cart;
+use App\Http\Requests\Basket\AddItem;
+use App\Modules\ShoppingBasket\Facades\Basket;
 use Illuminate\Http\Request;
 
 class BasketController extends Controller
 {
-    public function addItemToCart(Add $request)
+    public function addItemToCart(AddItem $request)
     {
         $options = $request->options;
 
         $model = app($options['model'])->find($request->productId);
 
-        Cart::add($model);
+        Basket::add($model);
     }
 
     /**
@@ -24,9 +24,9 @@ class BasketController extends Controller
      */
     public function basketCheckout()
     {
-        $basketProducts = Cart::content();
-        $total = Cart::total();
-        $count = Cart::count();
+        $basketProducts = Basket::content();
+        $total = Basket::total();
+        $count = Basket::count();
 
         return view('client.basket.index', compact('basketProducts', 'total', 'count'));
     }
@@ -36,15 +36,15 @@ class BasketController extends Controller
      */
     public function dropdown()
     {
-        $basketProducts = Cart::content();
-        $total = Cart::total();
+        $basketProducts = Basket::content();
+        $total = Basket::total();
 
         return view('client.basket.dropdown', compact('total', 'basketProducts'));
     }
 
     public function deleteCartItem(string $rowId)
     {
-        Cart::remove($rowId);
+        Basket::remove($rowId);
 
         return response(null, 204);
     }

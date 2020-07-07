@@ -16,7 +16,7 @@ class ShoppingBasketServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('shopping_basket', Cart::class);
+        $this->app->bind('shopping_basket', Basket::class);
 
         $this->app['events']->listen(Logout::class, function () {
             if ($this->app['config']->get('shopping_basket.destroy_on_logout')) {

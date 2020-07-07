@@ -1,11 +1,10 @@
 <?php
 
 
-namespace App\Http\Requests\Cart;
+namespace App\Http\Requests\Basket;
 
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
 
 class Add extends FormRequest
 {
@@ -23,7 +22,7 @@ class Add extends FormRequest
 
         if (array_key_exists('options', $data)) {
             $options = json_decode($data['options'], true);
-            $this->query->set('options', $options);
+            $this->merge(['options' => $options]);
         }
     }
 }

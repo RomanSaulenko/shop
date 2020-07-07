@@ -35,6 +35,12 @@ $router->group(['prefix' => '/'], function(Router $router) {
         $router->delete('cart_item/{rowId}', 'BasketController@deleteCartItem');
     });
 
+    $router->group(['prefix' => '/order'], function(Router $router) {
+        $router->get('/', 'OrderController@createOrder')->name('order.create');
+
+        $router->post('/', 'OrderController@store')->name('order.store');
+    });
+
 });
 
 $router->group(['prefix' => 'client', ], function(Router $router) {

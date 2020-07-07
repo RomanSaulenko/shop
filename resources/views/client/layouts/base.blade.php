@@ -43,7 +43,7 @@
                         <a type="button" class="btn btn-info btn-secondary border-right" href="{{route('basket.checkout')}}" >
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{__('common.Basket')}} <span class="badge badge-pill badge-danger">{{$basketCount}}</span>
                         </a>
-                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"onclick="Cart.dropdown(this);"
+                        <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" onclick="Cart.dropdown();"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>

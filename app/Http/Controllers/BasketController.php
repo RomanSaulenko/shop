@@ -39,4 +39,11 @@ class BasketController extends Controller
 
         return view('client.basket.dropdown', compact('total', 'basketProducts'));
     }
+
+    public function deleteCartItem(string $rowId)
+    {
+        Cart::remove($rowId);
+
+        return response(null, 204);
+    }
 }

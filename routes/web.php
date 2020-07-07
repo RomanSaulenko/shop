@@ -31,6 +31,8 @@ $router->group(['prefix' => '/'], function(Router $router) {
         $router->get('/', 'BasketController@basketCheckout')->name('basket.checkout');
         $router->get('add', 'BasketController@addItemToCart');
         $router->get('dropdown', 'BasketController@dropdown');
+
+        $router->delete('cart_item/{rowId}', 'BasketController@deleteCartItem');
     });
 
 });

@@ -9,13 +9,21 @@ CartClass = function() {
         });
     };
 
-    this.dropdown = function(parentNode) {
+    this.dropdown = function() {
         axios.get('/basket/dropdown')
             .then(function(response) {
                 console.log(response)
                 $('#basket-dropdown').html(response.data);
             });
-    }
+    };
+
+    this.removeCartItem = function(rowId) {
+        // alert('To delete');
+        axios.delete('/basket/cart_item/' + rowId)
+            .then(function(response) {
+                console.log('Deleted')
+            });
+    };
 };
 
 $(document).ready(function () {

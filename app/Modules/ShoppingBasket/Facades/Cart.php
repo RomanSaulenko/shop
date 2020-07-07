@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static Collection content()
  * @method static int|float count()
  * @method static int|float total()
+ * @method static void remove($rowId)
  *
  * @see \App\Modules\ShoppingBasket\Cart
  */

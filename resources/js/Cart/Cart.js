@@ -8,7 +8,15 @@ CartClass = function() {
             }
         });
     };
-}
+
+    this.dropdown = function(parentNode) {
+        axios.get('/basket/dropdown')
+            .then(function(response) {
+                console.log(response)
+                $('#basket-dropdown').html(response.data);
+            });
+    }
+};
 
 $(document).ready(function () {
     document.Cart = new CartClass();

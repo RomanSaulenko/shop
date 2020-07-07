@@ -3,4 +3,5 @@
 return [
     'Basket' => 'Корзина',
     'To_basket' => 'В корзину',
+    'Total' => 'Всего'
 ];

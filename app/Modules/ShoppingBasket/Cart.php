@@ -244,7 +244,7 @@ class Cart
         $content = $this->getContent();
 
         $total = $content->reduce(function ($total, CartItem $cartItem) {
-            return $total + $cartItem->qty;
+            return $total + $cartItem->price;
         }, 0);
 
         return $this->numberFormat($total, $decimals, $decimalPoint, $thousandSeperator);

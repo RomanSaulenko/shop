@@ -19,10 +19,24 @@ class BasketController extends Controller
         Cart::add($model);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function basketCheckout()
     {
         $basketProducts = Cart::content();
 
         return view('client.basket.index', compact('basketProducts'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function dropdown()
+    {
+        $basketProducts = Cart::content();
+        $total = Cart::total();
+
+        return view('client.basket.dropdown', compact('total', 'basketProducts'));
     }
 }

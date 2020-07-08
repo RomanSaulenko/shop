@@ -6,7 +6,7 @@
             <div class="col-4 border">
                 <div>
                     @if($product->image)
-                        <img src="{{asset('images/' . $product->image) }}" class="image-centered">
+                        <img src="{{asset($product->image) }}" class="image-centered">
                     @else
                         <img src="{{asset('images/default.jpg')}}"
                              class="image-centered"

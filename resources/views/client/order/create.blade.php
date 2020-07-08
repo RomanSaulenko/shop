@@ -8,8 +8,11 @@
                 @csrf
                 <div class="form-group" >
                     <label for="clientName">Контактное лицо</label>
-                    <input type="text" id="clientName" class="form-control" name="client[name]" aria-describedby="client_name_help">
+                    <input type="text" id="clientName" class="form-control {{$errors->has('client.name') ? 'is-invalid' : ''}}" name="client[name]" aria-describedby="client_name_help">
                     <small id="client_name_help" class="form-text text-muted">ФИО</small>
+                    <div class="invalid-feedback">
+                        {{ $errors->first('client.name') }}
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="clientPhone">Телефон</label>
@@ -20,7 +23,10 @@
                 </div>
                 <div class="form-group">
                     <label for="clientEmail">Email</label>
-                    <input type="email" id="clientEmail" class="form-control" >
+                    <input type="email" name="client[email]" id="clientEmail" class="form-control {{$errors->has('client.email') ? 'is-invalid' : ''}}" >
+                    <div class="invalid-feedback">
+                        {{ $errors->first('client.email') }}
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Оформить</button>
             </form>

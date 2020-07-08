@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <a href="{{ route('category.product', ['productId' => $product->id]) }}">
                                     @if($product->image)
-                                        <img src="{{asset('images/' . $product->image) }}" class="img-fluid">
+                                        <img src="{{asset($product->image) }}" class="img-fluid">
                                     @else
                                         <img src="{{asset('images/default.jpg')}}" class="img-fluid">
                                     @endif

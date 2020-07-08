@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-        App\Modules\ShoppingBasket\ShoppingBasketServiceProvider::class,
+        App\Modules\ShoppingBasket\ShoppingCartServiceProvider::class,
         /*
          * Application Service Providers...
          */

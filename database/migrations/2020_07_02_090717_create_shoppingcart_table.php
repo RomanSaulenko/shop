@@ -13,7 +13,7 @@ class CreateShoppingBasketTable extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_basket', function (Blueprint $table) {
+        Schema::create('shopping_cart', function (Blueprint $table) {
             $table->string('id');
             $table->string('instance');
             $table->longText('content');
@@ -30,6 +30,6 @@ class CreateShoppingBasketTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shopping_basket');
+        Schema::dropIfExists('shopping_cart');
     }
 }

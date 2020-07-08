@@ -6,7 +6,7 @@ namespace App\Http\Requests\Basket;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Add extends FormRequest
+class AddItem extends FormRequest
 {
     public function rules()
     {

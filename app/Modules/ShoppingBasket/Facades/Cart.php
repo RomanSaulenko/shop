@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static int|float total()
  * @method static void remove($rowId)
  *
- * @see \App\Modules\ShoppingBasket\Basket
+ * @see \App\Modules\ShoppingBasket\Cart
  */
-class Basket extends Facade {
+class Cart extends Facade {
     /**
      * Get the registered name of the component.
      *
@@ -22,6 +22,6 @@ class Basket extends Facade {
      */
     protected static function getFacadeAccessor()
     {
-        return 'shopping_basket';
+        return 'shopping_cart';
     }
 }

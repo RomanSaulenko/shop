@@ -17,9 +17,9 @@ use Illuminate\Session\SessionManager;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Contracts\Events\Dispatcher;
 
-class Basket
+class Cart
 {
-    const DEFAULT_INSTANCE = 'shopping_basket';
+    const DEFAULT_INSTANCE = 'shopping_cart';
 
     /**
      * Instance of the session manager.
@@ -60,7 +60,7 @@ class Basket
      * Set the current cart instance.
      *
      * @param string|null $instance
-     * @return \App\Modules\ShoppingBasket\Basket
+     * @return \App\Modules\ShoppingBasket\Cart
      */
     public function instance($instance = null)
     {
@@ -441,7 +441,7 @@ class Basket
      */
     private function getTableName()
     {
-        return config('shopping_basket.database.table', 'shopping_basket');
+        return config('shopping_cart.database.table', 'shopping_cart');
     }
 
     /**
@@ -451,7 +451,7 @@ class Basket
      */
     private function getConnectionName()
     {
-        $connection = config('shopping_basket.database.connection');
+        $connection = config('shopping_cart.database.connection');
 
         return is_null($connection) ? config('database.default') : $connection;
     }

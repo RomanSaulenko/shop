@@ -7,7 +7,7 @@ namespace App\Repositories;
 use App\Models\Nomenclature;
 use Illuminate\Database\Eloquent\Builder;
 
-class MysqlNomenclatureRepository implements NomenclatureRepository
+class NomenclatureRepositoryMysql implements NomenclatureRepository
 {
     /**
      * @var Nomenclature

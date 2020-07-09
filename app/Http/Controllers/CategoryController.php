@@ -4,14 +4,14 @@
 namespace App\Http\Controllers;
 
 
-use App\Repositories\MysqlCategoryRepository;
+use App\Repositories\CategoryRepositoryMysql;
 
 class CategoryController extends Controller
 {
-    /** @var MysqlCategoryRepository */
+    /** @var CategoryRepositoryMysql */
     protected $categoryRepository;
 
-    public function __construct(MysqlCategoryRepository $categoryRepository)
+    public function __construct(CategoryRepositoryMysql $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

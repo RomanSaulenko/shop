@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 
-class MysqlCategoryRepository implements CategoryRepository
+class CategoryRepositoryMysql implements CategoryRepository
 {
     /** @var Category */
     protected $model;

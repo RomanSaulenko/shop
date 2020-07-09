@@ -4,7 +4,7 @@
 namespace App\Repositories\Order;
 
 
-class MysqlOrderRepository implements OrderRepository
+class OrderRepositoryMysql implements OrderRepository
 {
     /**
      * @var

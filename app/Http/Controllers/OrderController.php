@@ -33,5 +33,6 @@ class OrderController extends Controller
         $data = $request->validated();
         $this->service->store($data);
 
+        return redirect(route(''));
     }
 }

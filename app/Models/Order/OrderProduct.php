@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class OrderProduct extends Model
 {
     /**
-     * @inheridoc
+     * {@inheritdoc}
+     */
+    protected $table = 'order_products';
+
+    /**
+     * {@inheritdoc}
      */
     protected $fillable = ['order_id', 'nomenclature_id', 'price', 'quantity'];
 

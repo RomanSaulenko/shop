@@ -29,13 +29,6 @@ class Cart
     private $session;
 
     /**
-     * Instance of the event dispatcher.
-     *
-     * @var \Illuminate\Contracts\Events\Dispatcher
-     */
-    private $events;
-
-    /**
      * Holds the current cart instance.
      *
      * @var string
@@ -46,12 +39,10 @@ class Cart
      * Cart constructor.
      *
      * @param \Illuminate\Session\SessionManager      $session
-     * @param \Illuminate\Contracts\Events\Dispatcher $events
      */
-    public function __construct(SessionManager $session, Dispatcher $events)
+    public function __construct(SessionManager $session)
     {
         $this->session = $session;
-        $this->events = $events;
 
         $this->instance(self::DEFAULT_INSTANCE);
     }
@@ -109,7 +100,7 @@ class Cart
 
         $content->put($cartItem->rowId, $cartItem);
 
-        $this->events->dispatch(new CartItemIsAdded($cartItem));
+        event(new CartItemIsAdded($cartItem));
 
         $this->session->put($this->instance, $content);
 
@@ -153,7 +144,7 @@ class Cart
             $content->put($cartItem->rowId, $cartItem);
         }
 
-        $this->events->dispatch(new CartItemIsUpdated($cartItem));
+        event(new CartItemIsUpdated($cartItem));
 
         $this->session->put($this->instance, $content);
 
@@ -174,7 +165,7 @@ class Cart
 
         $content->pull($cartItem->rowId);
 
-        $this->events->dispatch(new CartItemIsRemoved($cartItem));
+        event(new CartItemIsRemoved($cartItem));
 
         $this->session->put($this->instance, $content);
     }
@@ -307,7 +298,7 @@ class Cart
             'content' => serialize($content)
         ]);
 
-        $this->events->dispatch(new ShoppingBasketIsStored());
+        event(new ShoppingBasketIsStored());
     }
 
     /**
@@ -337,7 +328,7 @@ class Cart
             $content->put($cartItem->rowId, $cartItem);
         }
 
-        $this->events->dispatch(new ShoppingBasketIsRestored());
+        event(new ShoppingBasketIsRestored());
 
         $this->session->put($this->instance, $content);
 

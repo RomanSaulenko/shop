@@ -38,7 +38,6 @@
                         <strong>{{ config('app.name') }}</strong>
                     </a>
 
-
                     <div class="btn-group shopping-basket">
                         <a type="button" class="btn btn-secondary border-right" href="{{route('basket.checkout')}}" >
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> {{__('common.Basket')}} <span class="badge badge-pill badge-danger">{{$basketCount}}</span>
@@ -58,36 +57,27 @@
         </header>
 
         @yield('header')
+        <main class="bd-masthead" id="content" role="main">
 
-        <div class="container">
-            @yield('sidebar')
+            <div class="container">
+                @yield('sidebar')
 
-            @yield('content')
-        </div>
+                @yield('content')
+            </div>
 
+        </main>
 
         <footer class="page-footer">
                 <div class="container-fluid bg-light d-flex justify-content-between  mh-100">
-                    <!-- Footer Links -->
                     <div class="container text-center text-md-left  p-3">
 
-                        <!-- Grid row -->
                         <div class="row">
 
-                            <!-- Grid column -->
                             <div class="col-md-6 mt-md-0 mt-3">
-
-                                <!-- Content -->
                                 <h5 class="text-uppercase">Footer Content</h5>
-
                             </div>
-                            <!-- Grid column -->
-
-
-                            <!-- Grid column -->
                             <div class="col-md-3 mb-md-0 mb-3">
 
-                                <!-- Links -->
                                 <h5 class="text-uppercase">Сервис и помощь</h5>
 
                                 <ul class="list-unstyled">
@@ -118,12 +108,8 @@
                                 </ul>
 
                             </div>
-                            <!-- Grid column -->
-
-                            <!-- Grid column -->
                             <div class="col-md-3 mb-md-0 mb-3">
 
-                                <!-- Links -->
                                 <h5 class="text-uppercase">Информация</h5>
 
                                 <ul class="list-unstyled">
@@ -140,13 +126,8 @@
                                         <a href="#!">Link 4</a>
                                     </li>
                                 </ul>
-
                             </div>
-                            <!-- Grid column -->
-
                         </div>
-                        <!-- Grid row -->
-
                     </div>
 
 

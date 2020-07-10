@@ -37,7 +37,7 @@ $router->group(['prefix' => '/'], function(Router $router) {
 
     $router->group(['prefix' => '/order'], function(Router $router) {
         $router->get('/', 'OrderController@createOrder')->name('order.create');
-        $router->get('/order_created', 'OrderController@orderCreated')->name('order.created');
+        $router->get('/created', 'OrderController@orderCreated')->name('order.created');
 
         $router->post('/', 'OrderController@store')->name('order.store');
     });

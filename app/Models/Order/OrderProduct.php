@@ -5,9 +5,11 @@ namespace App\Models\Order;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderProduct extends Model
 {
+    use SoftDeletes;
     /**
      * {@inheritdoc}
      */

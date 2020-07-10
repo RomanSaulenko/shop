@@ -1,10 +1,10 @@
 @extends('client.layouts.base')
 
 @section('content')
-    <div class="row">
+    <div class="row mt-3">
         <div class="col"><h3>{{__('order.Thank_you')}}</h3></div>
     </div>
-    <div class="row">
+    <div class="row mt-3 mb-3">
         <div class="col">
             {{ __('order.To_pay') }}: {{$total}}
         </div>

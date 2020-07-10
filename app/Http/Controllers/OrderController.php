@@ -28,11 +28,31 @@ class OrderController extends Controller
         return view('client.order.create', compact('basketProducts', 'total'));
     }
 
+    public function orderCreated()
+    {
+        $orderId = session('order_created_id');
+
+        if (!$orderId) {
+            return redirect(route('index'));
+        }
+        $order = $this->service->getOrder($orderId);
+
+        $total = $order->products->reduce(function($res, $product) {
+            return $res + $product->price * $product->quantity;
+        }, 0);
+
+        Cart::destroy();
+
+        return view('client.order.created', compact('total'));
+    }
+
     public function store(Store $request)
     {
         $data = $request->validated();
-        $this->service->store($data);
+        $order = $this->service->store($data);
 
-        return redirect(route(''));
+        session()->flash('order_created_id', $order->id);
+
+        return redirect(route('order.created'));
     }
 }

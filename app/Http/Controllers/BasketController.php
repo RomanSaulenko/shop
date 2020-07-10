@@ -17,6 +17,8 @@ class BasketController extends Controller
         $model = app($options['model'])->find($request->productId);
 
         Cart::add($model);
+
+        return response(null, 200);
     }
 
     /**

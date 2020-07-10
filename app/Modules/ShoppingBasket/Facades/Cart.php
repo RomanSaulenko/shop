@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static CartItem add($id, $name = null, $qty = null, $price = null, array $options = [])
  * @method static Collection content()
  * @method static int|float count()
+ * @method static void destroy()
  * @method static int|float total()
  * @method static void remove($rowId)
  *

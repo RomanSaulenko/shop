@@ -37,6 +37,7 @@ $router->group(['prefix' => '/'], function(Router $router) {
 
     $router->group(['prefix' => '/order'], function(Router $router) {
         $router->get('/', 'OrderController@createOrder')->name('order.create');
+        $router->get('/order_created', 'OrderController@orderCreated')->name('order.created');
 
         $router->post('/', 'OrderController@store')->name('order.store');
     });
@@ -56,5 +57,4 @@ $router->group(['prefix' => 'client', ], function(Router $router) {
 
     $router->post('password/email', 'Client\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     $router->post('password/reset', 'Client\Auth\ResetPasswordController@reset')->name('password.update');
-
 });

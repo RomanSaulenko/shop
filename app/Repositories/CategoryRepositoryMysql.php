@@ -16,6 +16,10 @@ class CategoryRepositoryMysql implements CategoryRepository
         $this->model = $category;
     }
 
+    /**
+     * @param int $parentId
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function getCategoriesByParentId($parentId)
     {
         return $this->model
@@ -23,8 +27,4 @@ class CategoryRepositoryMysql implements CategoryRepository
             ->get();
     }
 
-    public function getProductsForCategory(int $categoryId)
-    {
-        return Category::where('');
-    }
 }

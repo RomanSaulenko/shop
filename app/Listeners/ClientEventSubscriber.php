@@ -26,7 +26,7 @@ class ClientEventSubscriber
     {
         $clientId = $this->clientService->createOrUpdateClient($event->getRequest()['client'] ?? []);
 
-        return compact('clientId');
+        return ['client_id' => $clientId];
     }
 
     /**

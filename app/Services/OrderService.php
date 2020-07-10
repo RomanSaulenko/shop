@@ -37,11 +37,11 @@ class OrderService
     {
 
         try {
+            $responses = event(new BeforeOrderStore($data));
+
             DB::beginTransaction();
 
             $order = new Order();
-
-            $responses = event(new BeforeOrderStore($data));
 
             foreach ($responses as $response) {
                 $order->fill($response);
@@ -52,9 +52,9 @@ class OrderService
 
             $order->products()->createMany($data['order_products']);
 
-            event(new AfterOrderStore($order));
-
             DB::commit();
+
+            event(new AfterOrderStore($order));
 
         } catch (Exception $exception) {
             DB::rollBack();

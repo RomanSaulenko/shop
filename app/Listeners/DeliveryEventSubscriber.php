@@ -26,7 +26,7 @@ class DeliveryEventSubscriber
     {
         $deliveryId = $this->deliveryService->createDelivery($event->getRequest()['delivery'] ?? []);
 
-        return compact('deliveryId');
+        return ['delivery_id' => $deliveryId];
     }
 
     /**

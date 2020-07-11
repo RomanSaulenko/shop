@@ -48,8 +48,7 @@ class OrderCreated extends Notification implements ShouldQueue
         return (new MailMessage)
                     ->success()
                     ->markdown('mail.order.created', ['order' => $this->order,'url' => route('index')])
-                    ->subject(__('order.Order_is_created'))
-                    ->greeting(__('order.Thank_you'));
+                    ->subject(__('order.Order_is_created'));
     }
 
     /**

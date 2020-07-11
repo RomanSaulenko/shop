@@ -5,13 +5,16 @@ namespace App\Listeners;
 
 
 use App\Events\Order\AfterOrderStore;
+use App\Models\Order\Client;
+use App\Notifications\OrderCreated;
 
 class OrderEventSubscriber
 {
     public function handleAfterCreateOrder(AfterOrderStore $event)
     {
         $order = $event->getOrder();
-        $order->client->notify();
+        app(Client::class)->notify(new OrderCreated($order));
+//        $order->client->notify(new OrderCreated($order));
     }
 
     /**

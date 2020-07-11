@@ -23,4 +23,15 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
 
+    public function totalPrice()
+    {
+        return $this->products->reduce(function($res, $product) {
+            return $res + $product->price * $product->quantity;
+        }, 0);
+    }
+
+    public function client()
+    {
+        return $this->belongsTo();
+    }
 }

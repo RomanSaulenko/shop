@@ -6,17 +6,20 @@ namespace App\Repositories\Order;
 
 use App\Models\Order\Order;
 
-interface OrderRepository
+class OrderRepository
 {
     /**
-     * @param int $orderId
-     * @return Order
+     * @var Order
      */
-    public function getOrder(int $orderId);
+    protected $model;
 
-    /**
-     * @param array $data
-     * @return Order
-     */
-    public function store(array $data);
+    public function __construct(Order $order)
+    {
+        $this->model = $order;
+    }
+
+    public function getOrder(int $orderId)
+    {
+        return $this->model->find($orderId);
+    }
 }

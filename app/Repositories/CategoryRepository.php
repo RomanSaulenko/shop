@@ -4,8 +4,27 @@
 namespace App\Repositories;
 
 
-interface CategoryRepository
+use App\Models\Category;
+
+class CategoryRepository
 {
-    public function getCategoriesByParentId(int $parentId);
+    /** @var Category */
+    protected $model;
+
+    public function __construct(Category $category)
+    {
+        $this->model = $category;
+    }
+
+    /**
+     * @param int $parentId
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function getCategoriesByParentId($parentId)
+    {
+        return $this->model
+            ->where('parent_id', $parentId)
+            ->get();
+    }
 
 }

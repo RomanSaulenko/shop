@@ -1,17 +1,18 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use App\Repositories\CategoryRepositoryMysql;
+use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 
 
 class IndexPageController extends Controller
 {
-    /**@var CategoryRepositoryMysql */
+    /**@var CategoryRepository */
     protected $categoryRepository;
 
-    public function __construct(CategoryRepositoryMysql $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

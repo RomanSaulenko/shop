@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Nomenclature\GetProductsForCategory;
 use App\Repositories\NomenclatureRepository;
 use App\Services\NomenclatureService;

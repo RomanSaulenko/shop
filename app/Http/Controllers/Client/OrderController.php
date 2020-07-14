@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
 
 use App\Exceptions\DataAlreadyExists;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\Store;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use App\Services\OrderService;

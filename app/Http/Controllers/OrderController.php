@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Exceptions\DataAlreadyExists;
 use App\Http\Requests\Order\Store;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use App\Services\OrderService;
@@ -37,9 +38,7 @@ class OrderController extends Controller
         }
         $order = $this->service->getOrder($orderId);
 
-        $total = $order->products->reduce(function($res, $product) {
-            return $res + $product->price * $product->quantity;
-        }, 0);
+        $total = $order->totalPrice();
 
         Cart::destroy();
 
@@ -49,7 +48,15 @@ class OrderController extends Controller
     public function store(Store $request)
     {
         $data = $request->validated();
-        $order = $this->service->store($data);
+        try {
+            $order = $this->service->store($data);
+
+        } catch (DataAlreadyExists $exception) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['client.email' => $exception->getMessage()]);
+        }
 
         session()->flash('order_created_id', $order->id);
 

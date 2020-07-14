@@ -21,6 +21,7 @@ class ClientEventSubscriber
 
     /**
      * Handle user login events.
+     * @throws \Exception
      */
     public function handleBeforeCreateOrder(BeforeOrderStore $event)
     {

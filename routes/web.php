@@ -18,7 +18,7 @@ use Illuminate\Routing\Router;
  */
 $router = app(Router::class);
 
-$router->group(['prefix' => '/'], function(Router $router) {
+$router->group(['prefix' => '/', 'namespace' => 'Client'], function(Router $router) {
 
     $router->get('/', 'IndexPageController@index')->name('index');
 
@@ -42,19 +42,29 @@ $router->group(['prefix' => '/'], function(Router $router) {
         $router->post('/', 'OrderController@store')->name('order.store');
     });
 
+    $router->group(['prefix' => 'client', 'namespace' => 'Auth'], function(Router $router) {
+        $router->get('login', 'LoginController@showLoginForm')->name('client.login');
+        $router->get('register', 'RegisterController@showRegistrationForm')->name('client.register');
+        $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+
+        $router->post('login', 'LoginController@login');
+        $router->post('logout', 'LoginController@logout')->name('logout');
+
+        $router->post('register', 'Client\Auth\RegisterController@register');
+
+        $router->post('password/email', 'Client\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        $router->post('password/reset', 'Client\Auth\ResetPasswordController@reset')->name('password.update');
+    });
+
 });
 
-$router->group(['prefix' => 'client', ], function(Router $router) {
-    $router->get('login', 'Client\Auth\LoginController@showLoginForm')->name('client.login');
-    $router->get('register', 'Client\Auth\RegisterController@showRegistrationForm')->name('client.register');
-    $router->get('password/reset', 'Client\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    $router->get('password/reset/{token}', 'Client\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+$router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function(Router $router) {
+    $router->get('/', 'IndexController@index')->name('admin.index');
 
-    $router->post('login', 'Client\Auth\LoginController@login');
-    $router->post('logout', 'Client\Auth\LoginController@logout')->name('logout');
-
-    $router->post('register', 'Client\Auth\RegisterController@register');
-
-    $router->post('password/email', 'Client\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    $router->post('password/reset', 'Client\Auth\ResetPasswordController@reset')->name('password.update');
+    $router->group(['prefix' => '/clients'], function(Router $router) {
+        $router->get('/', 'ClientController@index')->name('admin.client.index');
+    });
 });
+
+

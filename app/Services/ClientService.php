@@ -10,6 +10,13 @@ use Exception;
 
 class ClientService
 {
+    protected $repository;
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * @param array $data
      * @return int

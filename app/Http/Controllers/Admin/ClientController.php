@@ -20,13 +20,15 @@ class ClientController extends Controller
     public function index()
     {
         $this->service->getClients();
-        $clients = Client::paginate(1);
+        $clients = Client::paginate(50);
 
         return view('admin.client.index', compact('clients'));
     }
 
     public function edit(string $id)
     {
-        return view();
+        $client = $this->service->getClients()->first();
+
+        return view('admin.client.edit', compact('client'));
     }
 }

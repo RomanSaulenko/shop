@@ -21,7 +21,7 @@
 
             @foreach($clients as $client)
                 <tr>
-                    <th>1</th>
+                    <th>{{$loop->iteration}}</th>
                     <td>{{$client->name}}</td>
                     <td>{{$client->phone}}</td>
                     <td>{{$client->email}}</td>

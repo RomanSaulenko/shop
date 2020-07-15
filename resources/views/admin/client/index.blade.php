@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="p-3">
+
+        <div class="">
+            {{$clients->links()}}
+        </div>
+
         <table class="table">
             <thead>
             <tr>
@@ -13,6 +18,7 @@
             </tr>
             </thead>
             <tbody>
+
             @foreach($clients as $client)
                 <tr>
                     <th>1</th>
@@ -20,14 +26,19 @@
                     <td>{{$client->phone}}</td>
                     <td>{{$client->email}}</td>
                     <td>
-                        <a href="{{route('admin.client.edit', ['id' => $client->id])}}" class="btn btn-secondary">
-                            <span class="glyphicon glyphicon-pencil"></span>
+                        <a href="{{route('admin.client.edit', ['id' => $client->id])}}">
+                            <span class="material-icons">edit</span>
+                            <span class="material-icons">delete</span>
                         </a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+
+        <div class="">
+            {{$clients->links()}}
+        </div>
     </div>
 
 @endsection

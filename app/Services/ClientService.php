@@ -6,15 +6,16 @@ namespace App\Services;
 
 use App\Exceptions\DataAlreadyExists;
 use App\Models\User;
+use App\Repositories\ClientRepository;
 use Exception;
 
 class ClientService
 {
     protected $repository;
 
-    public function __construct()
+    public function __construct(ClientRepository $repository)
     {
-
+        $this->repository = $repository;
     }
 
     /**
@@ -33,5 +34,12 @@ class ClientService
         }
 
         return 0;
+    }
+
+    public function getClients()
+    {
+        return $this->repository
+            ->getClients()
+            ->with(['user']);
     }
 }

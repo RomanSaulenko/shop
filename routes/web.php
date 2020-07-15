@@ -64,6 +64,7 @@ $router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function(Router $r
 
     $router->group(['prefix' => '/clients'], function(Router $router) {
         $router->get('/', 'ClientController@index')->name('admin.client.index');
+        $router->get('/{id}', 'ClientController@edit')->name('admin.client.edit');
     });
 });
 

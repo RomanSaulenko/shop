@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'Clients' => 'Клиенты'
+    'Clients' => 'Клиенты',
+    'Name' => 'Имя',
+    'Phone' => 'Телефон',
 ];

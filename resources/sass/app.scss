@@ -1,12 +1,15 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 @import 'shopping_basket';
 @import 'admin/main';
 
+@import "~material-icons/iconfont/material-icons.css";
+
 @import '~bootstrap/scss/bootstrap';
 
-/* Medium devices (desktops, 992px and up) */
+a {
+    text-decoration: none;
+}
+
 @media screen and (min-width: 1200px) {
     main {
         min-height: 600px;

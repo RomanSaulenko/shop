@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-6">
                 <h3>Информация о клиенте</h3>
-                <form method="POST" action="{{ route('order.store') }}">
+                <form method="POST" action="{{ route('admin.client.store') }}">
                     @csrf
                     <div class="form-group" >
                         <label for="clientName">{{__('client.Name')}}</label>
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="clientPhone">Телефон</label>
+                        <label for="clientPhone">{{__('client.Phone')}}</label>
                         <input type="text" class="form-control {{$errors->has('client.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="client[phone]">
                         <div class="invalid-feedback">
                             {{ $errors->first('client.phone') }}

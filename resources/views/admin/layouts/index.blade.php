@@ -16,8 +16,8 @@
 </head>
 
 <body>
-    <div id="app" class="admin">
-        <div class="wrapper">
+    <div id="app">
+        <div  class="admin d-flex align-items-stretch">
             <nav id="sidebar">
                 <div class="sidebar-header p-2">
                     <h3>{{ config('app.name', 'Laravel') }}</h3>
@@ -29,11 +29,12 @@
                     </li>
                 </ul>
             </nav>
-            <div id="content">
+            <div id="content" class="flex-grow-1">
 
                 @yield('content')
             </div>
         </div>
+
 
     </div>
 

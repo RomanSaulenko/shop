@@ -22,4 +22,11 @@ class ClientRepository
     {
         return $this->model;
     }
+
+    public function getByEmail(string $email)
+    {
+        return $this->model
+            ->where('email', $email)
+            ->first();
+    }
 }

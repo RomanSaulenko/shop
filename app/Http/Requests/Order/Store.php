@@ -34,9 +34,4 @@ class Store extends FormRequest
             'order_products.*.price' => 'required|min:1'
         ];
     }
-
-    protected function getBasketItems()
-    {
-        return Cart::content();
-    }
 }

@@ -5,9 +5,7 @@ namespace App\Services;
 
 
 use App\Exceptions\DataAlreadyExists;
-use App\Models\User;
 use App\Repositories\ClientRepository;
-use Exception;
 
 class ClientService
 {
@@ -21,19 +19,24 @@ class ClientService
     /**
      * @param array $data
      * @return int
-     * @throws Exception
+     * @throws DataAlreadyExists
      */
     public function createOrUpdateClient(array $data)
     {
         //TODO
         $email = $data['email'];
-        $user = User::where('email', $email)->first();
+        $user = $this->repository->getByEmail($email)->first();
 
         if ($user) {
             throw new DataAlreadyExists(__('user.Already_created', [$email]));
         }
 
         return 0;
+    }
+
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
     }
 
     public function getClients()

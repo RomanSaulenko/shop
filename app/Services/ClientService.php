@@ -39,7 +39,6 @@ class ClientService
     public function getClients()
     {
         return $this->repository
-            ->getClients()
-            ->with(['user']);
+            ->getClients();
     }
 }

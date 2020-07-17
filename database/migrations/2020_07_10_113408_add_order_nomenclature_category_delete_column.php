@@ -19,12 +19,6 @@ class AddOrderNomenclatureCategoryDeleteColumn extends Migration
         Schema::table('order_products', function (Blueprint $table) {
             $table->softDeletes();
         });
-        Schema::table('nomenclatures', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-        Schema::table('categories', function (Blueprint $table) {
-            $table->softDeletes();
-        });
         Schema::table('brands', function (Blueprint $table) {
             $table->softDeletes();
         });
@@ -41,12 +35,6 @@ class AddOrderNomenclatureCategoryDeleteColumn extends Migration
             $table->dropColumn('deleted_at');
         });
         Schema::table('order_products', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
-        });
-        Schema::table('nomenclatures', function (Blueprint $table) {
-            $table->dropColumn('deleted_at');
-        });
-        Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn('deleted_at');
         });
         Schema::table('brands', function (Blueprint $table) {

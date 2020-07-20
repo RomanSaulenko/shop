@@ -1,9 +1,11 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Models\Nomenclature;
 use Faker\Generator as Faker;
 
-$factory->define(\App\Models\Nomenclature::class, function (Faker $faker) {
+$factory->define(Nomenclature::class, function (Faker $faker) {
     return [
         'title' => $faker->email,
         'category_id' => factory(\App\Models\Category::class),

@@ -14,7 +14,7 @@ class NomenclatureRepositoryTest extends TestCase
     protected static $repository;
 
     /**
-     * @see NomenclatureRepository::getByCategory()
+     * @covers NomenclatureRepository::getByCategory()
      */
     public function test_getByCategory()
     {
@@ -31,7 +31,7 @@ class NomenclatureRepositoryTest extends TestCase
     }
 
     /**
-     * @see NomenclatureRepository::getProduct()
+     * @covers NomenclatureRepository::getProduct()
      */
     public function test_getProduct_returnProduct()
     {

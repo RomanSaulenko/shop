@@ -44,4 +44,10 @@ class ClientService
         return $this->repository
             ->getClients();
     }
+
+    public function getClient($id)
+    {
+        return $this->repository
+            ->getClient($id);
+    }
 }

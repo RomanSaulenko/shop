@@ -31,7 +31,7 @@ class ClientController extends Controller
 
     public function edit(string $id)
     {
-        $client = $this->service->getClients()->first();
+        $client = $this->service->getClient($id);
 
         return view('admin.client.edit', compact('client'));
     }

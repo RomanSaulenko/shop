@@ -29,4 +29,14 @@ class ClientRepository
             ->where('email', $email)
             ->first();
     }
+
+    public function getClient($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function delete($id)
+    {
+        return $this->model->delete($id);
+    }
 }

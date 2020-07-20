@@ -4,6 +4,7 @@
 namespace Tests\Unit\Repositories;
 
 
+use App\Models\Nomenclature;
 use App\Repositories\NomenclatureRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
@@ -30,6 +31,20 @@ class NomenclatureRepositoryTest extends TestCase
     }
 
     /**
+     * @see NomenclatureRepository::getProduct()
+     */
+    public function test_getProduct_returnProduct()
+    {
+        $nomenclature = factory(Nomenclature::class)->create();
+        $repository = $this->getRepository();
+        /**@var Nomenclature $result*/
+        $result = $repository->getProduct($nomenclature->id);
+
+        $this->assertEquals($result->id, $nomenclature->id);
+
+    }
+
+    /**
      * @return NomenclatureRepository
      */
     protected function getRepository()
@@ -39,4 +54,5 @@ class NomenclatureRepositoryTest extends TestCase
         }
         return static::$repository;
     }
+
 }

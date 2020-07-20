@@ -20,9 +20,7 @@ class AddItem extends FormRequest
     {
         $data = $this->validationData();
 
-        if (array_key_exists('options', $data)) {
-            $options = json_decode($data['options'], true);
-            $this->merge(['options' => $options]);
-        }
+        $options = json_decode($data['options'], true);
+        $this->merge(['options' => $options]);
     }
 }

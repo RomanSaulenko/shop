@@ -12,9 +12,10 @@ class BasketController extends Controller
 {
     public function addItemToCart(AddItem $request)
     {
-        $options = $request->options;
+        $data = $request->validated();
+        $options = $data['options'];
 
-        $model = app($options['model'])->find($request->productId);
+        $model = app($options['model'])->find($data['productId']);
 
         Cart::add($model);
 

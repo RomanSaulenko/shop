@@ -56,7 +56,7 @@ class OrderController extends Controller
             return redirect()
                 ->back()
                 ->withInput()
-                ->withErrors(['client.email' => $exception->getMessage()]);
+                ->withErrors(['user.email' => $exception->getMessage()]);
         }
 
         session()->flash('order_created_id', $order->id);

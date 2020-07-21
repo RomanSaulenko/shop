@@ -4,21 +4,21 @@
 namespace App\Repositories;
 
 
-use App\Models\Order\Client;
+use App\Models\User;
 
-class ClientRepository
+class UserRepository
 {
     /**
-     * @var Client
+     * @var User
      */
     protected $model;
 
-    public function __construct(Client $client)
+    public function __construct(User $client)
     {
         $this->model = $client;
     }
 
-    public function getClients()
+    public function getUsers()
     {
         return $this->model;
     }

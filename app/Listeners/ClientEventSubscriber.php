@@ -5,18 +5,18 @@ namespace App\Listeners;
 
 
 use App\Events\Order\BeforeOrderStore;
-use App\Services\ClientService;
+use App\Services\UserService;
 
 class ClientEventSubscriber
 {
     /**
-     * @var ClientService
+     * @var UserService
      */
-    protected $clientService;
+    protected $service;
 
-    public function __construct(ClientService $clientService)
+    public function __construct(UserService $clientService)
     {
-        $this->clientService = $clientService;
+        $this->service = $clientService;
     }
 
     /**
@@ -25,7 +25,7 @@ class ClientEventSubscriber
      */
     public function handleBeforeCreateOrder(BeforeOrderStore $event)
     {
-        $clientId = $this->clientService->createOrUpdateClient($event->getRequest()['client'] ?? []);
+        $clientId = $this->service->createOrUpdate($event->getRequest()['user'] ?? []);
 
         return ['client_id' => $clientId];
     }

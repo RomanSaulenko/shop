@@ -26,9 +26,9 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'client.name' => 'required',
-            'client.phone' => 'required|phone:RU,AUTO',
-            'client.email' => 'required|email',
+            'user.name' => 'required',
+            'user.phone' => 'required|phone:RU,AUTO',
+            'user.email' => 'required|email',
             'order_products.*.nomenclature_id' => 'required|exists:nomenclatures,id',
             'order_products.*.quantity' => 'required|min:1',
             'order_products.*.price' => 'required|min:1'

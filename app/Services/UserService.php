@@ -5,13 +5,13 @@ namespace App\Services;
 
 
 use App\Exceptions\DataAlreadyExists;
-use App\Repositories\ClientRepository;
+use App\Repositories\UserRepository;
 
-class ClientService
+class UserService
 {
     protected $repository;
 
-    public function __construct(ClientRepository $repository)
+    public function __construct(UserRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -21,7 +21,7 @@ class ClientService
      * @return int
      * @throws DataAlreadyExists
      */
-    public function createOrUpdateClient(array $data)
+    public function createOrUpdate(array $data)
     {
         //TODO
         $email = $data['email'];
@@ -39,13 +39,13 @@ class ClientService
         return $this->repository->delete($id);
     }
 
-    public function getClients()
+    public function getUsers()
     {
         return $this->repository
-            ->getClients();
+            ->getUsers();
     }
 
-    public function getClient($id)
+    public function getUser($id)
     {
         return $this->repository
             ->getClient($id);

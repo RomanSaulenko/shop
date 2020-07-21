@@ -46,8 +46,8 @@ class OrderService
             foreach ($responses as $response) {
                 $order->fill($response);
             }
-            $order->phone = $data['client']['phone'];
-            $order->email = $data['client']['email'];
+            $order->phone = $data['user']['phone'];
+            $order->email = $data['user']['email'];
             $order->save();
 
             $order->products()->createMany($data['order_products']);

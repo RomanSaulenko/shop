@@ -5,25 +5,25 @@ namespace Tests\Unit\Controllers\Admin;
 
 
 use App\Exceptions\DataAlreadyExists;
-use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Requests\Admin\Client\Store as StoreOrderRequest;
 use App\Models\Order\Client;
-use App\Services\ClientService;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Mockery\MockInterface;
 use Tests\TestCase;
 
-class ClientControllerTest extends TestCase
+class UserControllerTest extends TestCase
 {
     /**
-     * @covers \App\Http\Controllers\Admin\ClientController::index
+     * @covers \App\Http\Controllers\Admin\UserController::index
      */
     public function test_index()
     {
-        $this->mock(ClientService::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getClients')->once();
+        $this->mock(UserService::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getUsers')->once();
         });
 
         $controller = $this->getController();
@@ -33,12 +33,12 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\Admin\ClientController::edit
+     * @covers \App\Http\Controllers\Admin\UserController::edit
      */
     public function test_edit()
     {
-        $this->mock(ClientService::class, function (MockInterface $mock) {
-            $mock->shouldReceive('getClient')->once();
+        $this->mock(UserService::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getUser')->once();
         });
 
         $controller = $this->getController();
@@ -48,18 +48,18 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\Admin\ClientController::store
+     * @covers \App\Http\Controllers\Admin\UserController::store
      */
     public function test_store_success()
     {
-        $this->mock(ClientService::class, function (MockInterface $mock) {
-            $mock->shouldReceive('createOrUpdateClient')->once();
+        $this->mock(UserService::class, function (MockInterface $mock) {
+            $mock->shouldReceive('createOrUpdate')->once();
         });
         $this->mock(StoreOrderRequest::class, function (MockInterface $mock) {
             $mock
                 ->shouldReceive('validated')
                 ->once()
-                ->andReturn(['client' => []]);
+                ->andReturn(['user' => []]);
         });
         $storeRequest = $this->app->make(StoreOrderRequest::class);
 
@@ -70,13 +70,13 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\Admin\ClientController::store
+     * @covers \App\Http\Controllers\Admin\UserController::store
      */
     public function test_store_exception()
     {
-        $this->mock(ClientService::class, function (MockInterface $mock) {
+        $this->mock(UserService::class, function (MockInterface $mock) {
             $mock
-                ->shouldReceive('createOrUpdateClient')
+                ->shouldReceive('createOrUpdate')
                 ->once()
                 ->andThrowExceptions([new DataAlreadyExists()]);
         });
@@ -84,7 +84,7 @@ class ClientControllerTest extends TestCase
             $mock
                 ->shouldReceive('validated')
                 ->once()
-                ->andReturn(['client' => []]);
+                ->andReturn(['user' => []]);
         });
         $storeRequest = $this->app->make(StoreOrderRequest::class);
 
@@ -95,7 +95,7 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * @covers \App\Http\Controllers\Admin\ClientController::delete
+     * @covers \App\Http\Controllers\Admin\UserController::delete
      */
     public function test_delete_success()
     {
@@ -108,10 +108,10 @@ class ClientControllerTest extends TestCase
     }
 
     /**
-     * @return ClientController
+     * @return UserController
      */
     protected function getController()
     {
-        return app(ClientController::class);
+        return app(UserController::class);
     }
 }

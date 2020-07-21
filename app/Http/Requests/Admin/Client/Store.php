@@ -11,9 +11,9 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'client.name' => 'required',
-            'client.phone' => 'required|phone:RU,AUTO',
-            'client.email' => 'required|email',
+            'user.name' => 'required',
+            'user.phone' => 'required|phone:RU,AUTO',
+            'user.email' => 'required|email',
         ];
     }
 }

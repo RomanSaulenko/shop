@@ -11,8 +11,8 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>{{__('client.Name')}}</th>
-                <th>{{__('client.Phone')}}</th>
+                <th>{{__('user.Name')}}</th>
+                <th>{{__('user.Phone')}}</th>
                 <th>Email</th>
                 <th></th>
             </tr>
@@ -26,7 +26,7 @@
                     <td>{{$client->phone}}</td>
                     <td>{{$client->email}}</td>
                     <td>
-                        <a href="{{route('admin.client.edit', ['id' => $client->id])}}">
+                        <a href="{{route('admin.user.edit', ['id' => $client->id])}}">
                             <span class="material-icons">edit</span>
                             <span class="material-icons">delete</span>
                         </a>

@@ -8,24 +8,24 @@
                 @csrf
                 <div class="form-group" >
                     <label for="clientName">Контактное лицо</label>
-                    <input type="text" id="clientName" class="form-control {{$errors->has('client.name') ? 'is-invalid' : ''}}" name="client[name]" aria-describedby="client_name_help">
+                    <input type="text" id="clientName" class="form-control {{$errors->has('user.name') ? 'is-invalid' : ''}}" name="client[name]" aria-describedby="client_name_help">
                     <small id="client_name_help" class="form-text text-muted">ФИО</small>
                     <div class="invalid-feedback">
-                        {{ $errors->first('client.name') }}
+                        {{ $errors->first('user.name') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="clientPhone">Телефон</label>
-                    <input type="text" class="form-control {{$errors->has('client.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="client[phone]">
+                    <input type="text" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="client[phone]">
                     <div class="invalid-feedback">
-                        {{ $errors->first('client.phone') }}
+                        {{ $errors->first('user.phone') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="clientEmail">Email</label>
-                    <input type="email" name="client[email]" id="clientEmail" class="form-control {{$errors->has('client.email') ? 'is-invalid' : ''}}" >
+                    <input type="email" name="client[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}" >
                     <div class="invalid-feedback">
-                        {{ $errors->first('client.email') }}
+                        {{ $errors->first('user.email') }}
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Оформить</button>

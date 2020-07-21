@@ -42,11 +42,11 @@ $router->group(['prefix' => '/', 'namespace' => 'Client'], function(Router $rout
         $router->post('/', 'OrderController@store')->name('order.store');
     });
 
-    $router->group(['prefix' => 'client', 'namespace' => 'Auth'], function(Router $router) {
-        $router->get('login', 'LoginController@showLoginForm')->name('client.login');
-        $router->get('register', 'RegisterController@showRegistrationForm')->name('client.register');
-        $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    $router->group(['prefix' => 'user', 'namespace' => 'Auth'], function(Router $router) {
+        $router->get('login', 'LoginController@showLoginForm')->name('user.login');
+        $router->get('register', 'RegisterController@showRegistrationForm')->name('user.register');
+        $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+        $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('user.password.reset');
 
         $router->post('login', 'LoginController@login');
         $router->post('logout', 'LoginController@logout')->name('logout');
@@ -57,16 +57,20 @@ $router->group(['prefix' => '/', 'namespace' => 'Client'], function(Router $rout
         $router->post('password/reset', 'Client\Auth\ResetPasswordController@reset')->name('password.update');
     });
 
+    $router->group(['prefix' => '/cabinet', 'middleware' => 'auth'], function(Router $router) {
+        $router->get('/', 'OrderController@createOrder');
+    });
+
 });
 
-$router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function(Router $router) {
+$router->group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(Router $router) {
     $router->get('/', 'IndexController@index')->name('admin.index');
 
-    $router->group(['prefix' => '/clients'], function(Router $router) {
-        $router->get('/', 'ClientController@index')->name('admin.client.index');
-        $router->get('/{id}', 'ClientController@edit')->name('admin.client.edit');
+    $router->group(['prefix' => '/users'], function(Router $router) {
+        $router->get('/', 'UserController@index')->name('admin.user.index');
+        $router->get('/{id}', 'UserController@edit')->name('admin.user.edit');
 
-        $router->post('/', 'ClientController@store')->name('admin.client.store');
+        $router->post('/', 'UserController@store')->name('admin.user.store');
     });
 });
 

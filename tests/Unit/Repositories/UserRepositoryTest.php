@@ -5,15 +5,16 @@ namespace Tests\Unit\Repositories;
 
 
 use App\Models\Order\Client;
-use App\Repositories\ClientRepository;
+use App\Models\User;
+use App\Repositories\UserRepository;
 use Tests\TestCase;
 
-class ClientRepositoryTest extends TestCase
+class UserRepositoryTest extends TestCase
 {
     protected static $repository;
 
     /**
-     * @covers \App\Repositories\ClientRepository::getByEmail
+     * @covers \App\Repositories\UserRepository::getByEmail
      * @dataProvider getByEmailData
      */
     public function test_getByEmail_success($email, $clientId)
@@ -25,19 +26,19 @@ class ClientRepositoryTest extends TestCase
     }
 
     /**
-     * @return ClientRepository
+     * @return UserRepository
      */
     protected function getRepository()
     {
         if (!static::$repository) {
-            static::$repository = app(ClientRepository::class);
+            static::$repository = app(UserRepository::class);
         }
         return static::$repository;
     }
 
     public function getByEmailData()
     {
-        $client = factory(Client::class)->create();
+        $client = factory(User::class)->create();
 
         return [
             [$client->email, $client->id],

@@ -25,7 +25,7 @@
 
                 <ul class="p-2">
                     <li>
-                        <a class="p-1" href="{{route('admin.client.index')}}">{{__('client.Clients')}}</a>
+                        <a class="p-1" href="{{route('admin.user.index')}}">{{__('user.Clients')}}</a>
                     </li>
                 </ul>
             </nav>

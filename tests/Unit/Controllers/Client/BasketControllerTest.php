@@ -53,6 +53,34 @@ class BasketControllerTest extends TestCase
     }
 
     /**
+     * @covers \App\Http\Controllers\Client\BasketController::dropdown
+     */
+    public function test_dropdown()
+    {
+        Cart::shouldReceive(['content' => 1, 'total' => 2])
+            ->once();
+
+        $controller = $this->getController();
+        $result = $controller->dropdown();
+
+        $this->assertInstanceOf(View::class, $result);
+    }
+
+    /**
+     * @covers \App\Http\Controllers\Client\BasketController::deleteCartItem
+     */
+    public function test_deleteCartItem()
+    {
+        Cart::shouldReceive('remove')
+            ->once();
+
+        $controller = $this->getController();
+        $result = $controller->deleteCartItem(2);
+
+        $this->assertInstanceOf(Response:: class, $result);
+    }
+
+    /**
      * @return BasketController
      */
     protected function getController()

@@ -42,25 +42,25 @@ $router->group(['prefix' => '/', 'namespace' => 'Client'], function(Router $rout
         $router->post('/', 'OrderController@store')->name('order.store');
     });
 
-    $router->group(['prefix' => 'user', 'namespace' => 'Auth'], function(Router $router) {
-        $router->get('login', 'LoginController@showLoginForm')->name('user.login');
-        $router->get('register', 'RegisterController@showRegistrationForm')->name('user.register');
-        $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
-        $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('user.password.reset');
-
-        $router->post('login', 'LoginController@login');
-        $router->post('logout', 'LoginController@logout')->name('logout');
-
-        $router->post('register', 'Client\Auth\RegisterController@register');
-
-        $router->post('password/email', 'Client\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-        $router->post('password/reset', 'Client\Auth\ResetPasswordController@reset')->name('password.update');
-    });
-
     $router->group(['prefix' => '/cabinet', 'middleware' => 'auth'], function(Router $router) {
         $router->get('/', 'OrderController@createOrder');
     });
 
+});
+
+$router->group(['prefix' => 'user', 'namespace' => 'Auth'], function(Router $router) {
+    $router->get('login', 'LoginController@showLoginForm')->name('user.login');
+    $router->get('register', 'RegisterController@showRegistrationForm')->name('user.register');
+    $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+    $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('user.password.reset');
+
+    $router->post('login', 'LoginController@login');
+    $router->post('logout', 'LoginController@logout')->name('logout');
+
+    $router->post('register', 'RegisterController@register');
+
+    $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    $router->post('password/reset', 'ResetPasswordController@reset')->name('password.update');
 });
 
 $router->group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function(Router $router) {

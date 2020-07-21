@@ -27,13 +27,6 @@ class NomenclatureController extends Controller
         $this->repository = $repository;
     }
 
-    public function getProductContent(string $id)
-    {
-        $nomenclature = $this->nomenclatureService->getProduct($id);
-
-        return view('nomenclature.cart');
-    }
-
     public function getProductsForCategory(GetProductsForCategory $request, int $categoryId)
     {
         $products = $this->nomenclatureService

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\Store;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use App\Services\OrderService;
+use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
@@ -32,7 +33,7 @@ class OrderController extends Controller
 
     public function orderCreated()
     {
-        $orderId = session('order_created_id');
+        $orderId = Session::get('order_created_id');
 
         if (!$orderId) {
             return redirect(route('index'));
@@ -46,6 +47,11 @@ class OrderController extends Controller
         return view('client.order.created', compact('total'));
     }
 
+    /**
+     * @param Store $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
     public function store(Store $request)
     {
         $data = $request->validated();
@@ -58,8 +64,7 @@ class OrderController extends Controller
                 ->withInput()
                 ->withErrors(['user.email' => $exception->getMessage()]);
         }
-
-        session()->flash('order_created_id', $order->id);
+        Session::flash('order_created_id', $order->id);
 
         return redirect(route('order.created'));
     }

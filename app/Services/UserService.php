@@ -9,6 +9,9 @@ use App\Repositories\UserRepository;
 
 class UserService
 {
+    /**
+     * @var UserRepository
+     */
     protected $repository;
 
     public function __construct(UserRepository $repository)
@@ -18,20 +21,24 @@ class UserService
 
     /**
      * @param array $data
-     * @return int
      * @throws DataAlreadyExists
      */
-    public function createOrUpdate(array $data)
+    public function create(array $data)
     {
-        //TODO
         $email = $data['email'];
-        $user = $this->repository->getByEmail($email)->first();
+        $user = $this->repository
+            ->getByEmail($email)
+            ->first();
 
         if ($user) {
             throw new DataAlreadyExists(__('user.Already_created', [$email]));
         }
+        return $this->repository->create($data);
+    }
 
-        return 0;
+    public function update(array $data)
+    {
+
     }
 
     public function delete($id)
@@ -48,6 +55,6 @@ class UserService
     public function getUser($id)
     {
         return $this->repository
-            ->getClient($id);
+            ->getUser($id);
     }
 }

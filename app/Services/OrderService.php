@@ -23,6 +23,10 @@ class OrderService
         $this->repository = $repository;
     }
 
+    /**
+     * @param int $orderId
+     * @return Order
+     */
     public function getOrder(int $orderId)
     {
         return $this->repository->getOrder($orderId);
@@ -31,7 +35,6 @@ class OrderService
     /**
      * @param $data
      * @return Order
-     * @throws Exception
      */
     public function store($data)
     {
@@ -41,13 +44,7 @@ class OrderService
 
             DB::beginTransaction();
 
-            $order = new Order();
-
-            foreach ($responses as $response) {
-                $order->fill($response);
-            }
-            $order->phone = $data['user']['phone'];
-            $order->email = $data['user']['email'];
+            $order = new Order($responses);
             $order->save();
 
             $order->products()->createMany($data['order_products']);

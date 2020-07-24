@@ -4,6 +4,7 @@
 namespace App\Models\Order;
 
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -13,7 +14,12 @@ class Client extends Model
     /**
      * {@inheritdoc}
      */
-    protected $fillable = ['name', 'phone', 'email'];
+    protected $fillable = ['user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Route notifications for the mail channel.
@@ -23,6 +29,6 @@ class Client extends Model
      */
     public function routeNotificationForMail($notification)
     {
-        return $this->email;
+        return $this->user->email;
     }
 }

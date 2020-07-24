@@ -39,7 +39,7 @@ class UserController extends Controller
     public function store(Store $request)
     {
         try {
-            $this->service->createOrUpdate($request->validated()['user']);
+            $this->service->create($request->validated()['user']);
         } catch (DataAlreadyExists $exception) {
             return redirect()
                 ->back()

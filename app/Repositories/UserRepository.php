@@ -18,6 +18,14 @@ class UserRepository
         $this->model = $client;
     }
 
+    public function create(array $data)
+    {
+        $model = $this->model->newInstance($data);
+        $model->save();
+
+        return $model;
+    }
+
     public function getUsers()
     {
         return $this->model;
@@ -30,7 +38,7 @@ class UserRepository
             ->first();
     }
 
-    public function getClient($id)
+    public function getUser($id)
     {
         return $this->model->find($id);
     }

@@ -53,7 +53,7 @@ class UserControllerTest extends TestCase
     public function test_store_success()
     {
         $this->mock(UserService::class, function (MockInterface $mock) {
-            $mock->shouldReceive('createOrUpdate')->once();
+            $mock->shouldReceive('create')->once();
         });
         $this->mock(StoreOrderRequest::class, function (MockInterface $mock) {
             $mock
@@ -76,7 +76,7 @@ class UserControllerTest extends TestCase
     {
         $this->mock(UserService::class, function (MockInterface $mock) {
             $mock
-                ->shouldReceive('createOrUpdate')
+                ->shouldReceive('create')
                 ->once()
                 ->andThrowExceptions([new DataAlreadyExists()]);
         });

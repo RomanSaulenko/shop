@@ -18,7 +18,7 @@
                             <div class="card-body">
                                 <a href="/categories/{{ $category->id }}">
                                     @if($category->image)
-                                        <img src="{{asset('images/' . $category->image) }}" class="img-fluid">
+                                        <img src="{{asset($category->image) }}" class="img-fluid">
                                     @else
                                         <img src="{{asset('images/default.jpg')}}" class="img-fluid">
                                     @endif

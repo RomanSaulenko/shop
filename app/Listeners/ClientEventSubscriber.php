@@ -31,7 +31,14 @@ class ClientEventSubscriber
      */
     public function handleBeforeCreateOrder(BeforeOrderStore $event)
     {
-        $user = $this->userService->create($event->getRequest()['user'] ?? []);
+        try {
+           $user = $this->userService->create($event->getRequest()['user'] ?? []); 
+        } catch (DataAlreadyExists $e) {
+            return route()
+                ->withInput()
+                ->withErrors(['user.email' => $exception->getMessage()]);
+        }
+        
         $client = $this->clientService->create(['user_id' => $user->id]);
 
         return ['client_id' => $client->id];

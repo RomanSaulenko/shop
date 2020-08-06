@@ -9,8 +9,7 @@
                         <img src="{{asset($product->image) }}" class="img-fluid">
                     @else
                         <img src="{{asset('images/default.jpg')}}"
-                             class="image-centered"
-                        >
+                             class="img-fluid">
                     @endif
                 </div>
             </div>

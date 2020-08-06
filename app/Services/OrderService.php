@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Services;
 
 
@@ -38,13 +37,16 @@ class OrderService
      */
     public function store($data)
     {
-
         try {
             $responses = event(new BeforeOrderStore($data));
 
             DB::beginTransaction();
+            
+            $order = new Order();
 
-            $order = new Order($responses);
+            foreach ($responses as $response) {
+                $order->fill($response);
+            }
             $order->save();
 
             $order->products()->createMany($data['order_products']);
@@ -57,7 +59,6 @@ class OrderService
             DB::rollBack();
             throw $exception;
         }
-
 
         return $order;
     }

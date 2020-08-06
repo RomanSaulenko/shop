@@ -10,6 +10,7 @@ use App\Http\Requests\Order\Store;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -23,12 +24,13 @@ class OrderController extends Controller
         $this->service = $service;
     }
 
-    public function createOrder()
+    public function createOrder(Request $request)
     {
-        $basketProducts = Cart::content();
+        $cartProducts = Cart::content();
         $total = Cart::total();
+        $user = $request->user();
 
-        return view('client.order.create', compact('basketProducts', 'total'));
+        return view('client.order.create', compact('cartProducts', 'total', 'user'));
     }
 
     public function orderCreated()
@@ -57,7 +59,6 @@ class OrderController extends Controller
         $data = $request->validated();
         try {
             $order = $this->service->store($data);
-
         } catch (DataAlreadyExists $exception) {
             return redirect()
                 ->back()

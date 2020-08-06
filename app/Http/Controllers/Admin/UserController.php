@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exceptions\DataAlreadyExists;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Client\Store;
-use App\Models\Order\Client;
+use App\Models\User;
 use App\Services\UserService;
 
 use Exception;
@@ -24,9 +24,9 @@ class UserController extends Controller
     public function index()
     {
         $this->service->getUsers();
-        $clients = Client::paginate(50);
+        $users = User::paginate(50);
 
-        return view('admin.user.index', compact('clients'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function edit(string $id)

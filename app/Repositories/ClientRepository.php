@@ -24,7 +24,7 @@ class ClientRepository
      */
     public function create(array $data)
     {
-        $model = $this->model->newInstance($data);
+        $model = $this->model->firstOrNew($data);
         $model->save();
 
         return $model;

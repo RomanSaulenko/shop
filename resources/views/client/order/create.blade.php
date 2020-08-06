@@ -16,14 +16,16 @@
                 </div>
                 <div class="form-group">
                     <label for="clientPhone">Телефон</label>
-                    <input type="text" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="client[phone]">
+                    <input type="text" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="client[phone]"
+                    value="{{optional($user)->phone ? $user->phone : ''}}">
                     <div class="invalid-feedback">
                         {{ $errors->first('user.phone') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="clientEmail">Email</label>
-                    <input type="email" name="client[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}" >
+                    <input type="email" name="client[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}" 
+                    value="{{optional($user)->email ? $user->email : ''}}">
                     <div class="invalid-feedback">
                         {{ $errors->first('user.email') }}
                     </div>
@@ -41,7 +43,7 @@
                         <th class="col-4">{{__('common.Quantity')}}</th>
                         <th class="col-3">{{__('nomenclature.Sum')}}</th>
                     </tr>
-                    @foreach($basketProducts as $item)
+                    @foreach($cartProducts as $item)
                         <tr class="d-flex">
                             <td class="col-4">{{$item->name}}</td>
                             <td class="col-4">{{$item->qty}}</td>

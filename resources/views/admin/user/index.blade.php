@@ -4,7 +4,7 @@
     <div class="p-3">
 
         <div class="">
-            {{$clients->links()}}
+            {{$users->links()}}
         </div>
 
         <table class="table">
@@ -19,14 +19,14 @@
             </thead>
             <tbody>
 
-            @foreach($clients as $client)
+            @foreach($users as $user)
                 <tr>
                     <th>{{$loop->iteration}}</th>
-                    <td>{{$client->name}}</td>
-                    <td>{{$client->phone}}</td>
-                    <td>{{$client->email}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->phone}}</td>
+                    <td>{{$user->email}}</td>
                     <td>
-                        <a href="{{route('admin.user.edit', ['id' => $client->id])}}">
+                        <a href="{{route('admin.user.edit', ['id' => $user->id])}}">
                             <span class="material-icons">edit</span>
                             <span class="material-icons">delete</span>
                         </a>
@@ -37,7 +37,7 @@
         </table>
 
         <div class="">
-            {{$clients->links()}}
+            {{$users->links()}}
         </div>
     </div>
 

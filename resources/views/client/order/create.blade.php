@@ -8,7 +8,7 @@
                 @csrf
                 <div class="form-group" >
                     <label for="clientName">Контактное лицо</label>
-                    <input type="text" id="clientName" class="form-control {{$errors->has('user.name') ? 'is-invalid' : ''}}" name="client[name]" aria-describedby="client_name_help">
+                    <input type="text" id="clientName" class="form-control {{$errors->has('user.name') ? 'is-invalid' : ''}}" name="user[name]" aria-describedby="client_name_help">
                     <small id="client_name_help" class="form-text text-muted">ФИО</small>
                     <div class="invalid-feedback">
                         {{ $errors->first('user.name') }}
@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label for="clientPhone">Телефон</label>
-                    <input type="text" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="client[phone]"
+                    <input type="text" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone" name="user[phone]"
                     value="{{optional($user)->phone ? $user->phone : ''}}">
                     <div class="invalid-feedback">
                         {{ $errors->first('user.phone') }}
@@ -24,8 +24,8 @@
                 </div>
                 <div class="form-group">
                     <label for="clientEmail">Email</label>
-                    <input type="email" name="client[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}" 
-                    value="{{optional($user)->email ? $user->email : ''}}">
+                    <input type="email" name="user[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}"
+                    value="{{optional($user)->email ? $user->email : ''}}" {{$user ? 'disabled' : ''}}>
                     <div class="invalid-feedback">
                         {{ $errors->first('user.email') }}
                     </div>

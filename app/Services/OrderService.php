@@ -32,16 +32,16 @@ class OrderService
     }
 
     /**
-     * @param $data
+     * @param array $data
      * @return Order
      */
     public function store($data)
     {
         try {
+            DB::beginTransaction();
+
             $responses = event(new BeforeOrderStore($data));
 
-            DB::beginTransaction();
-            
             $order = new Order();
 
             foreach ($responses as $response) {
@@ -51,15 +51,14 @@ class OrderService
 
             $order->products()->createMany($data['order_products']);
 
-            DB::commit();
-
             event(new AfterOrderStore($order));
+
+            DB::commit();
 
         } catch (Exception $exception) {
             DB::rollBack();
             throw $exception;
         }
-
         return $order;
     }
 }

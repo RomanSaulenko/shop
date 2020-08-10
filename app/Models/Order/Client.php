@@ -25,7 +25,7 @@ class Client extends Model
      * Route notifications for the mail channel.
      *
      * @param  \Illuminate\Notifications\Notification  $notification
-     * @return array|string
+     * @return array|stringenv
      */
     public function routeNotificationForMail($notification)
     {

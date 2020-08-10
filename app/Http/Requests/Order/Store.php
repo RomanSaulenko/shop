@@ -7,6 +7,7 @@ namespace App\Http\Requests\Order;
 use App\Adapters\Cart\CartItemToOrderProductAdapter;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class Store extends FormRequest
 {
@@ -17,6 +18,11 @@ class Store extends FormRequest
 
         foreach ($nomenclaturesFromCart as $nomenclatureFromCart) {
             $nomenclaturesToSave[] = new CartItemToOrderProductAdapter($nomenclatureFromCart);
+        }
+        if($user = Auth::user()) {
+            $userData = $this->get('user');
+            $userData['email'] = $user->email;
+            $this->merge(['user' => $userData]);
         }
         $this->merge([
             'order_products' => $nomenclaturesToSave->toArray()

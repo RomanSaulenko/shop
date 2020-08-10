@@ -60,10 +60,9 @@ class OrderController extends Controller
         try {
             $order = $this->service->store($data);
         } catch (DataAlreadyExists $exception) {
-            return redirect()
-                ->back()
-                ->withInput()
-                ->withErrors(['user.email' => $exception->getMessage()]);
+            return redirect(route('user.login'))
+                ->withInput($data)
+                ->withErrors(['error' => $exception->getMessage()]);
         }
         Session::flash('order_created_id', $order->id);
 

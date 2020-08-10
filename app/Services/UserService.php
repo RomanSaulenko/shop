@@ -31,12 +31,12 @@ class UserService
             ->first();
 
         if ($user) {
-            throw new DataAlreadyExists(__('user.Already_created', [$email]));
+            throw new DataAlreadyExists(__('user.Already_created', ['attribute' => $email]));
         }
         return $this->repository->create($data);
     }
 
-    public function update(array $data)
+    public function update(int $id, array $data)
     {
 
     }

@@ -7,6 +7,8 @@ namespace App\Listeners;
 use App\Events\Order\BeforeOrderStore;
 use App\Services\ClientService;
 use App\Services\UserService;
+use App\Exceptions\DataAlreadyExists;
+use Illuminate\Support\Facades\Auth;
 
 class ClientEventSubscriber
 {
@@ -31,14 +33,14 @@ class ClientEventSubscriber
      */
     public function handleBeforeCreateOrder(BeforeOrderStore $event)
     {
-        try {
-           $user = $this->userService->create($event->getRequest()['user'] ?? []); 
-        } catch (DataAlreadyExists $e) {
-            return route()
-                ->withInput()
-                ->withErrors(['user.email' => $exception->getMessage()]);
+        $userData = $event->getRequest()['user'] ?? [];
+
+        if ($user = Auth::user()) {
+            $this->userService->update($user->id, $userData);
+        } else {
+            $user = $this->userService->create($userData);
         }
-        
+
         $client = $this->clientService->create(['user_id' => $user->id]);
 
         return ['client_id' => $client->id];

@@ -72,6 +72,10 @@ $router->group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'au
 
         $router->post('/', 'UserController@store')->name('admin.user.store');
     });
+
+    $router->group(['prefix' => '/clients'], function(Router $router) {
+        $router->get('/', 'ClientController@list')->name('admin.user.index');
+    });
 });
 
 

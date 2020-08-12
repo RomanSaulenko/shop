@@ -22,4 +22,13 @@ class ClientService
     {
         return $this->repository->create($data);
     }
+
+    /**
+     * @param array $filters
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function all(array $filters = [])
+    {
+        return $this->repository->all($filters);
+    }
 }

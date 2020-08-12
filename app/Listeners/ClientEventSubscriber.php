@@ -5,10 +5,12 @@ namespace App\Listeners;
 
 
 use App\Events\Order\BeforeOrderStore;
+use App\Models\Group;
+use App\Models\User;
 use App\Services\ClientService;
 use App\Services\UserService;
-use App\Exceptions\DataAlreadyExists;
 use Illuminate\Support\Facades\Auth;
+use Silber\Bouncer\BouncerFacade;
 
 class ClientEventSubscriber
 {
@@ -40,6 +42,7 @@ class ClientEventSubscriber
         } else {
             $user = $this->userService->create($userData);
         }
+        $this->addClientGroupToUser($user);
 
         $client = $this->clientService->create(['user_id' => $user->id]);
 
@@ -57,5 +60,10 @@ class ClientEventSubscriber
             BeforeOrderStore::class,
             __CLASS__ . '@handleBeforeCreateOrder'
         );
+    }
+
+    protected function addClientGroupToUser(User $user)
+    {
+        BouncerFacade::assign(Group::CLIENT)->to($user);
     }
 }

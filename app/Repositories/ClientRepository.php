@@ -3,8 +3,8 @@
 
 namespace App\Repositories;
 
-
 use App\Models\Order\Client;
+use Illuminate\Database\Eloquent\Collection;
 
 class ClientRepository
 {
@@ -30,4 +30,14 @@ class ClientRepository
         return $model;
     }
 
+    /**
+     * @param array $filters
+     * @return Collection
+     */
+    public function all(array $filters = [])
+    {
+        return $this->model
+            ->with(['user'])
+            ->get();
+    }
 }

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\User;
 use App\Repositories\ClientRepository;
 
 class ClientService
@@ -30,5 +31,10 @@ class ClientService
     public function all(array $filters = [])
     {
         return $this->repository->all($filters);
+    }
+
+    public function addClientGroupToUser(User $user)
+    {
+        return $this->repository->addClientGroupToUser($user);
     }
 }

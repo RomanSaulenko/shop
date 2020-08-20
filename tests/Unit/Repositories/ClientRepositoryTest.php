@@ -5,6 +5,7 @@ namespace Tests\Unit\Repositories;
 
 
 use App\Models\Order\Client;
+use App\Models\User;
 use App\Repositories\ClientRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Tests\TestCase;
@@ -31,6 +32,16 @@ class ClientRepositoryTest extends TestCase
         $clients = $repository->all();
 
         $this->assertInstanceOf(Collection::class, $clients);
+    }
+
+    public function test_addClientGroupToUser()
+    {
+        $user = factory(User::class)->create();
+
+        $repository = $this->getRepository();
+        $result = $repository->addClientGroupToUser($user);
+
+        $this->assertEquals($result, true);
     }
 
     /**

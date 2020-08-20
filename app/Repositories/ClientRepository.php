@@ -3,8 +3,11 @@
 
 namespace App\Repositories;
 
+use App\Models\Group;
 use App\Models\Order\Client;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Silber\Bouncer\BouncerFacade;
 
 class ClientRepository
 {
@@ -39,5 +42,12 @@ class ClientRepository
         return $this->model
             ->with(['user'])
             ->get();
+    }
+
+    public function addClientGroupToUser(User $user)
+    {
+        BouncerFacade::assign(Group::CLIENT)->to($user);
+
+        return true;
     }
 }

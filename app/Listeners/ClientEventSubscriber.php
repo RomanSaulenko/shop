@@ -4,6 +4,7 @@
 namespace App\Listeners;
 
 
+use App\Events\Client\ClientRegistered;
 use App\Events\Order\BeforeOrderStore;
 use App\Models\Group;
 use App\Models\User;
@@ -49,6 +50,11 @@ class ClientEventSubscriber
         return ['client_id' => $client->id];
     }
 
+    public function handleAfterClientRegistered(ClientRegistered $event)
+    {
+        $this->addClientGroupToUser($event->getUser());
+    }
+
     /**
      * Register the listeners for the subscriber.
      *
@@ -60,10 +66,14 @@ class ClientEventSubscriber
             BeforeOrderStore::class,
             __CLASS__ . '@handleBeforeCreateOrder'
         );
+        $events->listen(
+            ClientRegistered::class,
+            __CLASS__ . '@handleAfterClientRegistered'
+        );
     }
 
     protected function addClientGroupToUser(User $user)
     {
-        BouncerFacade::assign(Group::CLIENT)->to($user);
+        return $this->clientService->addClientGroupToUser($user);
     }
 }

@@ -50,14 +50,14 @@ $router->group(['prefix' => '/', 'namespace' => 'Client'], function(Router $rout
 
 $router->group(['prefix' => 'user', 'namespace' => 'Auth'], function(Router $router) {
     $router->get('login', 'LoginController@showLoginForm')->name('user.login');
-    $router->get('register', 'RegisterController@showRegistrationForm')->name('user.register');
+    $router->get('register', 'ClientRegisterController@showRegistrationForm')->name('user.register');
     $router->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
     $router->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('user.password.reset');
 
     $router->post('login', 'LoginController@login');
     $router->post('logout', 'LoginController@logout')->name('logout');
 
-    $router->post('register', 'RegisterController@register');
+    $router->post('register', 'ClientRegisterController@register');
 
     $router->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     $router->post('password/reset', 'ResetPasswordController@reset')->name('password.update');

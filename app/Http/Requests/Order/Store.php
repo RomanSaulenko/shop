@@ -12,6 +12,17 @@ class Store extends FormRequest
 {
     public function prepareForValidation()
     {
+        $user = $this->user();
+        if ($user) {
+//            $this->merge([
+//                'user.id' => $user->id,
+//                'user.name' => $user->name,
+//                'user.phone' => $user->phone,
+//                'user.email' => $user->email,
+//            ]);
+            $this->merge(['user' => $user->toArray()]);
+        }
+
         $nomenclaturesFromCart = Cart::content()->toArray();
         $nomenclaturesToSave = collect();
 
@@ -26,6 +37,7 @@ class Store extends FormRequest
     public function rules()
     {
         return [
+            'user.id' => 'filled',
             'user.name' => 'required',
             'user.phone' => 'required|phone:RU,AUTO',
             'user.email' => 'required|email',

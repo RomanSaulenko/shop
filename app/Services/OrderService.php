@@ -40,18 +40,22 @@ class OrderService
     {
 
         try {
-            $responses = event(new BeforeOrderStore($data));
-
             DB::beginTransaction();
 
-            $order = new Order($responses);
+            $order = new Order();
+
+            $responses = event(new BeforeOrderStore($data));
+
+            foreach ($responses as $response) {
+                $order->fill($response);
+            }
             $order->save();
 
             $order->products()->createMany($data['order_products']);
 
-            DB::commit();
-
             event(new AfterOrderStore($order));
+
+            DB::commit();
 
         } catch (Exception $exception) {
             DB::rollBack();

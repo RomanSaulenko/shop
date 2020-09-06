@@ -31,8 +31,14 @@ class ClientEventSubscriber
      */
     public function handleBeforeCreateOrder(BeforeOrderStore $event)
     {
-        $user = $this->userService->create($event->getRequest()['user'] ?? []);
-        $client = $this->clientService->create(['user_id' => $user->id]);
+        $userData = $event->getRequest()['user'];
+
+        if ($this->doesUserExist($userData)) {
+            $user = $this->userService->getUser($userData['id']);
+        } else {
+            $user = $this->userService->create($userData);
+        }
+        $client = $this->clientService->updateOrCreate(['user_id' => $user->id]);
 
         return ['client_id' => $client->id];
     }
@@ -48,5 +54,10 @@ class ClientEventSubscriber
             BeforeOrderStore::class,
             __CLASS__ . '@handleBeforeCreateOrder'
         );
+    }
+
+    protected function doesUserExist($userData)
+    {
+        return array_key_exists('id', $userData);
     }
 }

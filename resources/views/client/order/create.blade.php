@@ -9,7 +9,8 @@
                 <div class="form-group" >
                     <label for="clientName">Контактное лицо</label>
                     <input type="text" name="user[name]" id="clientName"  class="form-control {{$errors->has('user.name') ? 'is-invalid' : ''}}"
-                           value="{{old('user.name')}}" aria-describedby="client_name_help">
+                           value="{{$authenticatedUser->exists() ? $authenticatedUser->name :old('user.name')}}"
+                           aria-describedby="client_name_help" {{$authenticatedUser->exists() ? 'disabled' : ''}}>
                     <small id="client_name_help" class="form-text text-muted">ФИО</small>
                     <div class="invalid-feedback">
                         {{ $errors->first('user.name') }}
@@ -17,14 +18,18 @@
                 </div>
                 <div class="form-group">
                     <label for="clientPhone">Телефон</label>
-                    <input type="text" name="user[phone]" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone"  value="{{old('user.phone')}}">
+                    <input type="text" name="user[phone]" class="form-control {{$errors->has('user.phone') ? 'is-invalid' : ''}}" id="clientPhone"
+                           value="{{$authenticatedUser->exists() ? $authenticatedUser->phone :old('user.phone')}}"
+                           {{$authenticatedUser->exists() ? 'disabled' : ''}}>
                     <div class="invalid-feedback">
                         {{ $errors->first('user.phone') }}
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="clientEmail">Email</label>
-                    <input type="email" name="user[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}" value="{{old('user.email')}}">
+                    <input type="email" name="user[email]" id="clientEmail" class="form-control {{$errors->has('user.email') ? 'is-invalid' : ''}}"
+                           value="{{$authenticatedUser->exists() ? $authenticatedUser->email :old('user.email')}}"
+                           {{$authenticatedUser->exists() ? 'disabled' : ''}}>
                     <div class="invalid-feedback">
                         {{ $errors->first('user.email') }}
                     </div>

@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Dto\Admin\Client\ListIndexDto;
 use App\Repositories\ClientRepository;
 
 class ClientService
@@ -18,8 +19,17 @@ class ClientService
         $this->repository = $repository;
     }
 
-    public function create(array $data)
+    /**
+     * @param ListIndexDto $dto
+     * @return \App\Models\Order\Client
+     */
+    public function get(ListIndexDto $dto)
     {
-        return $this->repository->create($data);
+        return $this->repository->get($dto);
+    }
+
+    public function updateOrCreate(array $data)
+    {
+        return $this->repository->updateOrCreate($data);
     }
 }

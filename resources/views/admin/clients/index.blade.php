@@ -22,9 +22,9 @@
             @foreach($clients as $client)
                 <tr>
                     <th>{{$loop->iteration}}</th>
-                    <td>{{$client->user->name}}</td>
-                    <td>{{$client->user->phone}}</td>
-                    <td>{{$client->user->email}}</td>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->phone}}</td>
+                    <td>{{$client->email}}</td>
                     <td>
                         <a href="{{route('admin.user.edit', ['id' => $client->id])}}">
                             <span class="material-icons">edit</span>

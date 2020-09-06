@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\Store;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use App\Services\OrderService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -23,12 +24,15 @@ class OrderController extends Controller
         $this->service = $service;
     }
 
-    public function createOrder()
+    public function createOrder(Request $request)
     {
         $basketProducts = Cart::content();
         $total = Cart::total();
 
-        return view('client.order.create', compact('basketProducts', 'total'));
+        $authenticatedUser = $request->user();
+        $authenticatedUser = optional($authenticatedUser);
+
+        return view('client.order.create', compact('basketProducts', 'total', 'authenticatedUser'));
     }
 
     public function orderCreated()

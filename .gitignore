@@ -2,10 +2,11 @@
 /public/hot
 /public/images
 /public/storage
+/public/report/*
 /public/css
 /public/js
 /public/fonts
-/storage/*.key
+/storage/*
 /vendor
 /.idea
 composer.lock

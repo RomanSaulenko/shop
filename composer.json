@@ -14,9 +14,10 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
+        "facade/ignition": "^2.0",
+        "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^4.1",
-        "phpunit/phpunit": "^8.5",
-        "facade/ignition": "^2.0"
+        "phpunit/phpunit": "^8.5"
     },
     "config": {
         "optimize-autoloader": true,

@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\OrderController;
 use App\Models\Order\Order;
 use App\Modules\ShoppingBasket\Facades\Cart;
 use App\Services\OrderService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use Mockery\MockInterface;
@@ -23,7 +24,8 @@ class OrderControllerTest extends TestCase
         Cart::shouldReceive(['content' => 1, 'total' => 2]);
 
         $controller = $this->getController();
-        $result = $controller->createOrder();
+        $request = $this->app->make(Request::class);
+        $result = $controller->createOrder($request);
 
         $this->assertInstanceOf(View::class, $result);
     }

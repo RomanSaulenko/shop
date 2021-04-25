@@ -23,7 +23,6 @@ class ClientController extends Controller
 
     public function list(ListIndex $request, Config $config)
     {
-        config();
         $clients = $this->service
             ->get($request->getDto())
             ->paginate($config->get('clients.admin_clients_per_page'));
